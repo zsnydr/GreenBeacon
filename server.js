@@ -11,10 +11,9 @@ module.exports.app = app;
 app.set('port', process.env.PORT || 3000);
 
 // Logging and parsing
-app.use(morgan('dev'));
 app.use(parser.json());
 
 // Serve the client files
-app.use(express.static(__dirname + './Client'));
+app.use(express.static(__dirname + '/Client'));
 
 app.listen(app.get('port'));
