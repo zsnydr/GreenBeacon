@@ -14,6 +14,6 @@ app.set('port', process.env.PORT || 3000);
 app.use(parser.json());
 
 // Serve the client files
-app.use(express.static(__dirname + './Client'));
+app.use(express.static(__dirname + '/Client'));
 
 app.listen(app.get('port'));
