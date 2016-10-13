@@ -1,0 +1,23 @@
+{
+  "name": "beacon",
+  "description": "helpdesk 2.0",
+  "main": "server.js",
+  "authors": [
+    "Alina",
+    "Conor",
+    "Natasha",
+    "Zack"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}

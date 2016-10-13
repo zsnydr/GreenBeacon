@@ -1,0 +1,23 @@
+{
+  "name": "beacon",
+  "version": "1.0.0",
+  "description": "helpdesk 2.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GreenBeacon/GreenBeacon.git"
+  },
+  "author": "Alina, Conor, Natasha, Zack",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GreenBeacon/GreenBeacon/issues"
+  },
+  "homepage": "https://github.com/GreenBeacon/GreenBeacon#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
