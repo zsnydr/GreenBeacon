@@ -20,12 +20,13 @@ module.exports.router = function(app){
   //       console.log('SESSION:', req.session);
   //       res.redirect('/');
   //     });
-  app.get('/tickets', helpers.getTicketsFunc);
+  app.get('/tickets', helpers.getTicketsFunc(req, res));
 
 
-  app.post('/tickets', helpers.addToQueue);
+  app.post('/tickets', helpers.addToQueue(req, res));
 
 
-  app.put('/claimed', helpers.tagClaimed);
+  app.put('/claimed', helpers.tagClaimed(req, res));
   app.put('/solved', helpers.tagSolved);
+  
 }
