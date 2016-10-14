@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app='app'>
   <head>
     <!-- <script src="./../bower_components/jquery/dist/jquery.min.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -7,7 +7,9 @@
   </head>
   <body>
 
-
+    <div ng-controller='AuthController'>
+      <input type='button' value='Sign in with github' ng-click='signin()'>
+    </div>
 
 
     <script src='app/auth/auth.js'></script>
