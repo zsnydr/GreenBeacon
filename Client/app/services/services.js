@@ -38,7 +38,7 @@ angular.module('app.services', [])
   var signin = function() {
     return $http({
       method: 'GET',
-      url: '/auth/github'
+      url: 'http:/auth/github'
     })
     .then(function(resp){
       return resp;
