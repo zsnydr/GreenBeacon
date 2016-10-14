@@ -17,6 +17,10 @@ angular.module('app.services', [])
     })
   }
 
+  return {
+    getTickets: getTickets
+  }
+
 }])
 
 
@@ -30,6 +34,10 @@ angular.module('app.services', [])
     .then(function(resp){
       return resp;
     })
+  }
+
+  return {
+    signin: signin
   }
 
 }])

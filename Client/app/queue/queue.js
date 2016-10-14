@@ -1,6 +1,6 @@
 //Queue controller
 
-angular.module('app.queue', []);
+angular.module('app.queue', [])
 
 .controller('QueueController', ['$scope', 'Tickets', function($scope, Tickets){
 
