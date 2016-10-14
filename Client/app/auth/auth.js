@@ -8,12 +8,7 @@ angular.module('app.auth', [])
 
   $scope.signin = function(){
     Auth.signin()
-    .then(function(resp){
-      console.log('CLIENT SIDE:', resp);
-    })
-    .catch(function(error){
-      console.error(error);
-    })
+    
   }
 
 }])
