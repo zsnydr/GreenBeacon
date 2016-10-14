@@ -1,9 +1,10 @@
 var helpers = require('./helpers');
 var passport = require('passport');
+var helpers = require('./routehelpers');
 module.exports.router = function(app){
 
-app.get('/signin', authfunction);
-app.get('/signout', terminateSession)
+app.get('/signin', helpers.authfunction);
+app.get('/signout', helpers.terminateSession)
 app.get('/auth/github',
     passport.authenticate('github', { scope: [ 'user:email' ] }),
     function(req, res){
@@ -17,12 +18,12 @@ app.get('/callback',
       console.log('SESSION:', req.session);
       res.redirect('/');
     });
-app.get('/tickets', getTicketsFunc);
+app.get('/tickets', helpers.getTicketsFunc);
 
 
-app.post('/tickets', addToQueue);
+app.post('/tickets', helpers.addToQueue);
 
 
-app.put('/claimed', tagClaimed);
-app.put('/solved', tagSolved);
+app.put('/claimed', helpers.tagClaimed);
+app.put('/solved', helpers.tagSolved);
 }
