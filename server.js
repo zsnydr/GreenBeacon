@@ -8,10 +8,10 @@ var parser = require('body-parser');
 var authorize = require('./authHelpers.js');
 var routes = require('./routes.js');
 var config = require('./config.js');
-
-
-
 var app = express();
+
+console.log(config.keys)
+
 
 passport.serializeUser((id, done) => {
   done(null, id);
@@ -36,18 +36,28 @@ passport.use(new GitHubStrategy({
   }
 ))
 
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, X-HTTP-Method-Override, Accept');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+  });
+
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static(__dirname + '/Client'));
 app.use(parser.json());
-app.use(session({ secret: 'login to our new site',
-          resave : true,
-          saveUninitialized: true,
-          cookie: {maxAge: 30000},
-    }));
+// app.use(session({ secret: 'login to our new site',
+//           resave : true,
+//           saveUninitialized: true,
+//           cookie: {maxAge: 30000},
+//     }));
 
 app.get('/auth/github',
+
         passport.authenticate('github', { scope: [ 'user:email' ] }),
         function(req, res){
           // The request will be redirected to GitHub for authentication, so this
@@ -67,13 +77,7 @@ app.set('port', process.env.PORT || 3000);
 
 
 // Serve the client files
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, X-HTTP-Method-Override, Accept');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
-  });
+
 
 
 

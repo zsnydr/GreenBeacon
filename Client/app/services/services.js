@@ -24,16 +24,19 @@ angular.module('app.services', [])
 }])
 
 
-.factory('Auth', ['$http', function($http){
+.factory('Auth', ['$http', '$window', function($http, $window){
 
   var signin = function() {
-    return $http({
-      method: 'GET',
-      url: '/auth/github'
-    })
-    .then(function(resp){
-      return resp;
-    })
+    $window.location = '/auth/github';
+    // return $http({
+    //   method: 'GET',
+    //   url: '/signin',
+    //   headers: {'Access-Control-Allow-Origin': '*'}
+    //
+    // .then(function(resp){
+    //   console.log('response: ',resp);
+    //   return resp;
+    // })
   }
 
   return {
