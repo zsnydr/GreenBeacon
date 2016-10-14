@@ -53,7 +53,7 @@ routes.router(app);
 authorize.auth(app);
 
 app.listen(app.get('port'), function(){
-  console.log('listening on port: ', port)
+  console.log('listening on port: ', app.get('port'))
 });
 
 
