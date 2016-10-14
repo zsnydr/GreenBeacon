@@ -48,13 +48,13 @@ app.set('port', process.env.PORT || 3000);
 app.use(parser.json());
 
 // Serve the client files
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, X-HTTP-Method-Override, Accept');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
-  });
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, X-HTTP-Method-Override, Accept');
+//     res.setHeader('Access-Control-Allow-Credentials', true);
+//     next();
+//   });
 app.use(express.static(__dirname + '/Client'));
 
 routes.router(app);
