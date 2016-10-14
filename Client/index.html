@@ -13,7 +13,17 @@
     </div>
 
     <!-- Queue View -->
+    <div ng-controller='QueueController'>
+      <div class='queue-container'>
+        <div class='ticket' ng-repeat='ticket in data.tickets'>
 
+          <div class='username'> {{ticket.username}} </div>
+          <div class='message'> {{ ticket.message }} </div>
+
+        </div>
+      </div>
+
+    </div>
 
 
     <script src='app/auth/auth.js'></script>
