@@ -3,7 +3,9 @@ var passport = require('passport');
 var helpers = require('./routehelpers');
 module.exports.router = function(app){
 
-  app.get('/signin', helpers.authfunction);
+  app.get('/signin', function(req, res){
+    res.redirect('/auth/github');
+  });
   app.get('/signout', helpers.terminateSession)
   // app.get('/auth/github',
   //     passport.authenticate('github', { scope: [ 'user:email' ] }),
