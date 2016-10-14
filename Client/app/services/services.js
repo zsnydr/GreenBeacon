@@ -3,6 +3,9 @@
 
 angular.module('app.services', [])
 
+//Tickets factory
+  //retrieves ticket objects from server via GET request
+
 .factory('Auth', ['$http', function($http){
 
   var signin = function() {
