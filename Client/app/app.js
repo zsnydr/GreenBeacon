@@ -1,5 +1,6 @@
 //initialize app module, include services and auth dependencies
 
+angular.module('app', ['app.auth'])
 
 
 
