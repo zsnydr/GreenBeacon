@@ -48,7 +48,6 @@ app.set('port', process.env.PORT || 3000);
 app.use(parser.json());
 
 // Serve the client files
-app.use(express.static(__dirname + '/Client'));
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -56,6 +55,8 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
   });
+app.use(express.static(__dirname + '/Client'));
+
 routes.router(app);
 authorize.auth(app);
 
