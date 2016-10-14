@@ -33,16 +33,10 @@ angular.module('app.services', [])
 }])
 
 
-.factory('Auth', ['$http', function($http){
+.factory('Auth', ['$http', '$window', function($http, $window){
 
   var signin = function() {
-    return $http({
-      method: 'GET',
-      url: 'http:/auth/github'
-    })
-    .then(function(resp){
-      return resp;
-    })
+    $window.location = '/auth/github';
   }
 
   return {
