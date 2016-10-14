@@ -3,6 +3,27 @@
 
 angular.module('app.services', [])
 
+//Tickets factory
+  //retrieves ticket objects from server via GET request
+.factory('Tickets', ['$http', function($http){
+
+  var getTickets = function() {
+    return $http({
+      method: 'GET',
+      url: '/tickets'
+    })
+    .then(function(resp){
+      return resp;
+    })
+  }
+
+  return {
+    getTickets: getTickets
+  }
+
+}])
+
+
 .factory('Auth', ['$http', function($http){
 
   var signin = function() {
@@ -13,6 +34,10 @@ angular.module('app.services', [])
     .then(function(resp){
       return resp;
     })
+  }
+
+  return {
+    signin: signin
   }
 
 }])
