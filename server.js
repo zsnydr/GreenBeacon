@@ -6,6 +6,7 @@ var GitHubStrategy = require('passport-github2').Strategy;
 // Middleware
 var parser = require('body-parser');
 var authorize = require('./authHelpers.js');
+var routes = require('./routes.js');
 
 // var gitClientID = '2bf2f840356d251d928c';
 // var gitSecret = 'c606d2126dd0ea186e3dda5d53f1646bf778cc10';
@@ -42,17 +43,18 @@ var app = express();
 
 // Set what we are listening on.
 
-var port = process.env.PORT || 3000;
+app.set('port', process.env.PORT || 3000);
 // Logging and parsing
 app.use(parser.json());
 
 // Serve the client files
 app.use(express.static(__dirname + '/Client'));
+routes.router(app);
+authorize.auth(app);
 
-app.listen(port, function(){
+app.listen(app.get('port'), function(){
   console.log('listening on port: ', port)
 });
 
 
-authorize.auth(app);
 module.exports.app = app;
