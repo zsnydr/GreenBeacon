@@ -7,7 +7,7 @@ angular.module('app.form', [])
 		Tickets.addTicket($scope.ticket)
 		.catch(funciton (err) {
 			console.log(err);
-		})
+		});
 	}
 	
-}])
+}]);

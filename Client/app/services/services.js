@@ -15,10 +15,19 @@ angular.module('app.services', [])
     .then(function(resp){
       return resp;
     })
-  }
+  };
+
+  var addTicket = function (ticket) {
+    return $http({
+      method: 'POST',
+      url: '/tickets',
+      data: ticket
+    });
+  };
 
   return {
-    getTickets: getTickets
+    getTickets: getTickets,
+    addTicket: addTicket
   }
 
 }])
