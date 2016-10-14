@@ -15,10 +15,19 @@ angular.module('app.services', [])
     .then(function(resp){
       return resp;
     })
-  }
+  };
+
+  var addTicket = function (ticket) {
+    return $http({
+      method: 'POST',
+      url: '/tickets',
+      data: ticket
+    });
+  };
 
   return {
-    getTickets: getTickets
+    getTickets: getTickets,
+    addTicket: addTicket
   }
 
 }])
@@ -28,15 +37,6 @@ angular.module('app.services', [])
 
   var signin = function() {
     $window.location = '/auth/github';
-    // return $http({
-    //   method: 'GET',
-    //   url: '/signin',
-    //   headers: {'Access-Control-Allow-Origin': '*'}
-    //
-    // .then(function(resp){
-    //   console.log('response: ',resp);
-    //   return resp;
-    // })
   }
 
   return {
