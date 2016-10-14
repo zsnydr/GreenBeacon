@@ -5,7 +5,7 @@ angular.module('app.form', [])
 	$scope.ticket = {};
 	$scope.addTicket = function () {
 		Tickets.addTicket($scope.ticket)
-		.catch(funciton (err) {
+		.catch(function (err) {
 			console.log(err);
 		});
 	}
