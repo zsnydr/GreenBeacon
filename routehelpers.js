@@ -29,11 +29,9 @@ module.exports = {
   },
 
   addToQueue: (req, res) => {
-    console.log('conor');
-    // pull username, message, and location from req.body and IDcount
-    // build ticket object
-    // push ticket to messages
-    // increment IDcount
+    console.log('addToQueue');
+    ticket.push(req.body);
+    // increment IDcount???
   },
 
   tagClaimed: (req, res) => {
@@ -46,7 +44,12 @@ module.exports = {
 
   tagSolved: (req, res) => {
     console.log('hello');
+    for (let ticket of tickets) {
+      if (ticket.ID === req.body.ID) {
+        ticket.solved = !ticket.solved;
+      }
+    }
+    // res.send(tickets); ?
   }
 
-
-}
+};
