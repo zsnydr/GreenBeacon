@@ -10,20 +10,20 @@ var tickets = [
 
 module.exports = {
 
-  authfunction: function(){
+  authfunction: (req, res) => {
     console.log('authfunction')
   },
 
-  terminateSession: function(){
+  terminateSession: (req, res) => {
     console.log('terminateSession');
   },
 
-  getTicketsFunc: function(req, res){
+  getTicketsFunc: (req, res) => {
     console.log('getTicketsFunc');
     // send all tickets back in res.end
   },
 
-  addToQueue: function(req, res){
+  addToQueue: (req, res) => {
     console.log('conor');
     // pull username, message, and location from req.body and IDcount
     // build ticket object
@@ -31,13 +31,13 @@ module.exports = {
     // increment IDcount
   },
 
-  tagClaimed: function(req, res){
+  tagClaimed: (req, res) => {
     console.log('claimed');
     // find ticket with messageID from req
     // mark it as claimed
   },
 
-  tagSolved: function(){
+  tagSolved: (req, res) => {
     console.log('hello');
   }
 

@@ -5,7 +5,7 @@ angular.module('app.services', [])
 
 //Tickets factory
   //retrieves ticket objects from server via GET request
-.factory('Tickets', ['$http', function($http){
+.factory('Tickets', ['$http', function($http) {
 
   var getTickets = function() {
     return $http({
