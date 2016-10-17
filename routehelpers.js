@@ -21,11 +21,11 @@ module.exports = {
   terminateSession: (req, res) => {
     console.log('terminateSession');
     req.session.destroy();
-    res.redirect('/');
+    res.redirect('/signin');
   },
 
-  getTicketsFunc: (req, res) => {
-    console.log('getTicketsFunc');
+  getTickets: (req, res) => {
+    console.log('getTickets');
     res.end(tickets);
   },
 
@@ -33,7 +33,7 @@ module.exports = {
     console.log('addToQueue');
 
     tickets.push({
-      username: req.session.cookie.passport.user.displayname,
+      username: req.session.passport.user.displayname,
       message: req.body.message,
       location: req.body.location,
       ID: IDcount,
