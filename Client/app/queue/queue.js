@@ -17,6 +17,6 @@ angular.module('app.queue', [])
       })
   }
 
-  initializeQueue();
+  //initializeQueue();
 
 }])
