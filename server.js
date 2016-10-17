@@ -11,13 +11,13 @@ var config = require('./config.js');
 var app = express();
 
 
+
 passport.serializeUser((id, done) => {
   done(null, id);
 });
 
 passport.deserializeUser((user, done) => {
-  if (!err) done(null, user);
-  else done(err, null);
+  done(null, user);
 });
 
 passport.use(new GitHubStrategy({
@@ -32,6 +32,12 @@ passport.use(new GitHubStrategy({
   }
 ));
 
+app.use(session({
+  secret: 'secret'
+  resave: true,
+  saveUninitialized: true,
+  cookie: {maxAge: 30000}
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());

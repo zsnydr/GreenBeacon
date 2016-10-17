@@ -10,8 +10,12 @@ var tickets = [
 
 module.exports = {
 
-  authfunction: (req, res) => {
-    console.log('authfunction')
+  isLoggedIn: (req, res, next) => {
+    if(req.session && req.session.passport.user.username && req.session.passport.user.provider === 'github'){
+      next();
+    } else {
+      res.redirect('/auth/github');
+    }
   },
 
   terminateSession: (req, res) => {
@@ -20,6 +24,7 @@ module.exports = {
 
   getTicketsFunc: (req, res) => {
     console.log('getTicketsFunc');
+    res.send(tickets);
     // send all tickets back in res.end
   },
 
@@ -33,6 +38,8 @@ module.exports = {
 
   tagClaimed: (req, res) => {
     console.log('claimed');
+    res.end();
+
     // find ticket with messageID from req
     // mark it as claimed
   },
@@ -40,5 +47,6 @@ module.exports = {
   tagSolved: (req, res) => {
     console.log('hello');
   }
+
 
 }
