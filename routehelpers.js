@@ -20,36 +20,50 @@ module.exports = {
 
   terminateSession: (req, res) => {
     console.log('terminateSession');
+    req.session.destroy();
+    res.redirect('/');
   },
 
   getTicketsFunc: (req, res) => {
     console.log('getTicketsFunc');
-    res.send(tickets);
-    // send all tickets back in res.end
+    res.end(tickets);
   },
 
   addToQueue: (req, res) => {
     console.log('addToQueue');
-    ticket.push(req.body);
-    // increment IDcount???
+
+    tickets.push({
+      username: req.session.cookie.passport.user.displayname,
+      message: req.body.message,
+      location: req.body.location,
+      ID: IDcount,
+      date: new Date(),
+      claimed: false,
+      solved: false
+    });
+
+    IDcount++;
+    res.end(tickets);
   },
 
   tagClaimed: (req, res) => {
     console.log('claimed');
-    res.end();
-
-    // find ticket with messageID from req
-    // mark it as claimed
+    for (let ticket of tickets) {
+      if (ticket.ID === req.body.ID) {
+        ticket.claimed = !ticket.claimed;
+      }
+    }
+    res.end(tickets);
   },
 
   tagSolved: (req, res) => {
-    console.log('hello');
+    console.log('solved');
     for (let ticket of tickets) {
       if (ticket.ID === req.body.ID) {
-        ticket.solved = !ticket.solved;
+        ticket.solved = true;
       }
     }
-    // res.send(tickets); ?
+    res.end(tickets);
   }
 
 };
