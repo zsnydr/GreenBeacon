@@ -1,6 +1,25 @@
 //initialize app module, include services and auth dependencies
 
-angular.module('app', ['app.auth', 'app.queue', 'app.services', 'app.form'])
+angular.module('app', ['app.auth', 'app.queue', 'app.services', 'app.form', 'ngRoute'])
+
+.config(function($routeProvier){
+
+	$routeProvier
+		.when('/signin', {
+			templateUrl: 'auth/signin.html',
+			controller: 'AuthController'
+		})
+		.when('/tickets', {
+			templateUrl: 'queue/queue.html',
+			controller: 'QueueController'
+		})
+		.when('/help', {
+			templateUrl: 'helpform/helpform.html',
+			controller: 'FormController'
+		})
+
+
+})
 
 
 
