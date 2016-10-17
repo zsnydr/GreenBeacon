@@ -4,7 +4,7 @@ angular.module('app', ['app.auth', 'app.queue', 'app.services', 'app.form', 'ngR
 
 .config(function($routeProvider){
 
-	$routeProvier
+	$routeProvider
 		.when('/signin', {
 			templateUrl: 'auth/signin.html',
 			controller: 'AuthController'
