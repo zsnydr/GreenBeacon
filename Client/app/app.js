@@ -6,15 +6,15 @@ angular.module('app', ['app.auth', 'app.queue', 'app.services', 'app.form', 'ngR
 
 	$routeProvider
 		.when('/signin', {
-			templateUrl: 'auth/signin.html',
+			templateUrl: 'app/auth/signin.html',
 			controller: 'AuthController'
 		})
 		.when('/tickets', {
-			templateUrl: 'queue/queue.html',
+			templateUrl: 'app/queue/queue.html',
 			controller: 'QueueController'
 		})
 		.when('/help', {
-			templateUrl: 'helpform/helpform.html',
+			templateUrl: 'app/helpform/helpform.html',
 			controller: 'FormController'
 		})
 
