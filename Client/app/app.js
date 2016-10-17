@@ -2,7 +2,7 @@
 
 angular.module('app', ['app.auth', 'app.queue', 'app.services', 'app.form', 'ngRoute'])
 
-.config(function($routeProvier){
+.config(function($routeProvider){
 
 	$routeProvier
 		.when('/signin', {

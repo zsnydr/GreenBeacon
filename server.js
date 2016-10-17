@@ -33,7 +33,7 @@ passport.use(new GitHubStrategy({
 ));
 
 app.use(session({
-  secret: 'secret'
+  secret: 'secret',
   resave: true,
   saveUninitialized: true,
   cookie: {maxAge: 30000}
