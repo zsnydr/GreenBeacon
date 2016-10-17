@@ -5,12 +5,12 @@ var session = require('express-session');
 var GitHubStrategy = require('passport-github2').Strategy;
 // Middleware
 var parser = require('body-parser');
-var authorize = require('./authHelpers.js');
+//var authorize = require('./authHelpers.js');
 var routes = require('./routes.js');
 var config = require('./config.js');
+
+
 var app = express();
-
-
 
 passport.serializeUser((id, done) => {
   done(null, id);

@@ -12,10 +12,10 @@ module.exports.router = (app) => {
   app.get('/callback', passport.authenticate('github', { failureRedirect: '/session' }), (req, res) => {
     console.log('SESSION:', req.session.passport);
     req.session.cookie.passport = req.session.passport;
-    res.redirect('/queue');
+    res.redirect('/tickets');
   });
 
-  app.get('/tickets', helpers.isLoggedIn, helpers.getTicketsFunc);
+  app.get('/tickets', helpers.isLoggedIn, helpers.getTickets);
 
   app.post('/tickets', helpers.isLoggedIn, helpers.addToQueue);
 
