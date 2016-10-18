@@ -1,0 +1,28 @@
+<!-- Queue template -->
+
+<div ng-controller='QueueController'>
+ <div class="list-group">
+     <div class='ticket' ng-repeat='ticket in data.tickets'>
+
+      <a href="#" class="list-group-item list-group-item-action">
+        <h5 class="list-group-item-heading"> {{ticket.username}}</h5>
+        <p class="list-group-item-text">{{ ticket.message }} </p>
+      </a>
+
+     </div>
+ </div>
+
+
+
+<form name='input-group' class='input-group' ng-submit= 'addTicket()'>
+
+     <input name='ticket' class='input-text' type="text"
+        ng-model="ticket.message"
+        placeholder="Enter your question here" required/>
+
+      <input class = 'btn-primary' type = 'submit' value = 'Add'>
+
+</form>
+
+
+</div>
