@@ -1,6 +1,6 @@
 //initialize app module, include services and auth dependencies
 
-angular.module('app', ['app.auth', 'app.queue', 'app.services', 'app.form', 'ngRoute'])
+angular.module('app', ['app.auth', 'app.queue', 'app.services', 'ngRoute'])
 
 .config(function($routeProvider){
 
@@ -11,11 +11,14 @@ angular.module('app', ['app.auth', 'app.queue', 'app.services', 'app.form', 'ngR
 		})
 		.when('/tickets', {
 			templateUrl: 'app/queue/queue.html',
-			controller: 'QueueController'
+			 controller: 'QueueController'
 		})
-		.when('/help', {
-			templateUrl: 'app/helpform/helpform.html',
-			controller: 'FormController'
+		// .when('/help', {
+		// 	templateUrl: 'app/helpform/helpform.html',
+		// 	controller: 'FormController'
+		// })
+		.otherwise({
+			redirectTo: '/tickets'
 		})
 
 
