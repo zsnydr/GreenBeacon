@@ -9,6 +9,7 @@ angular.module('app', ['app.auth', 'app.queue', 'app.services', 'ngRoute'])
 			templateUrl: 'app/auth/signin.html',
 			controller: 'AuthController'
 		})
+
 		.when('/tickets', {
 			templateUrl: 'app/queue/queue.html',
 			 controller: 'QueueController'

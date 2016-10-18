@@ -2,7 +2,7 @@
 
 angular.module('app.queue', [])
 
-.controller('QueueController', ['$scope', 'Tickets', function($scope, Tickets){
+.controller('QueueController', ['$scope', 'Tickets', 'Auth', function($scope, Tickets, Auth){
 
   //call getTickets from Tickets factory
   $scope.data = {};
@@ -29,6 +29,11 @@ $scope.ticket = {};
     .catch(function (err) {
       console.log(err);
     });
+  }
+
+  $scope.signout = function () {
+    console.log('inside signout')
+    Auth.signout();
   }
 
   initializeQueue();
