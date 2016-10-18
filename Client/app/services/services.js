@@ -5,7 +5,7 @@ angular.module('app.services', [])
 
 //Tickets factory
   //retrieves ticket objects from server via GET request
-.factory('Tickets', ['$http', function($http) {
+.factory('Tickets', ['$http', '$window', function($http, $window) {
 
   var getTickets = function() {
     return $http({
@@ -14,6 +14,9 @@ angular.module('app.services', [])
     })
     .then(function(resp){
       console.log(resp)
+      if (resp.data === 'failed') {
+        $window.location = '/#/signin'
+      }
       return resp;
     })
   };
@@ -41,8 +44,13 @@ angular.module('app.services', [])
     $window.location = '/auth/github';
   }
 
+  var signout = function () {
+    $window.location = '/signout'
+  }
+
   return {
-    signin: signin
+    signin: signin,
+    signout: signout
   }
 
 }])

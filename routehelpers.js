@@ -11,17 +11,18 @@ var tickets = [
 module.exports = {
 
   isLoggedIn: (req, res, next) => {
-    if(req.session && req.session.passport.user.username && req.session.passport.user.provider === 'github'){
+    //console.log('SESSION ', req.session)
+    if(req.session && req.session.passport && req.session.passport.user.username && req.session.passport.user.provider === 'github'){
       next();
     } else {
-      res.redirect('/auth/github');
+      res.end('failed');
     }
   },
 
   terminateSession: (req, res) => {
     console.log('terminateSession');
     req.session.destroy();
-    res.redirect('/signin');
+    res.redirect('/#/signin');
   },
 
   getTickets: (req, res) => {
