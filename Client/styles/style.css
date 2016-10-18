@@ -1,0 +1,19 @@
+body {
+	font-family: "PT Mono", "Times New Roman", serif
+}
+.list-group, .input-group {
+    width: 400px;
+    margin: 0 auto; 
+}
+.input-group {
+
+	padding-top: 50px
+}
+
+.input-text {
+	width:300px;
+}
+
+.btn-primary {
+	width: 100px;
+}

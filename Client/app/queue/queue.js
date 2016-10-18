@@ -10,13 +10,27 @@ angular.module('app.queue', [])
   var initializeQueue = function() {
     Tickets.getTickets()
       .then(function(tickets){
-        $scope.data.tickets = tickets;
+        console.log("inside initialize ", tickets)
+        $scope.data.tickets = tickets.data;
       })
       .catch(function(error){
         console.error(error);
       })
   }
 
-  //initializeQueue();
+$scope.ticket = {};
+  $scope.addTicket = function () {
+    console.log('inside addTicket module ', $scope.ticket)
+    Tickets.addTicket($scope.ticket)
+    .then(function () {
+      $scope.ticket = {};
+      initializeQueue();
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+  }
+
+  initializeQueue();
 
 }])

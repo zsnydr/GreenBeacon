@@ -13,11 +13,13 @@ angular.module('app.services', [])
       url: '/tickets'
     })
     .then(function(resp){
+      console.log(resp)
       return resp;
     })
   };
 
   var addTicket = function (ticket) {
+    console.log('inside addTicket ', ticket)
     return $http({
       method: 'POST',
       url: '/tickets',

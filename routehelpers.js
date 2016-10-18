@@ -26,14 +26,15 @@ module.exports = {
 
   getTickets: (req, res) => {
     console.log('getTickets');
-    res.end(tickets);
+    res.send(tickets);
   },
 
   addToQueue: (req, res) => {
-    console.log('addToQueue');
+    console.log('addToQueue', req.body);
+  //  console.log('addtoq ', req.session.passport.user.displayName);
 
     tickets.push({
-      username: req.session.passport.user.displayname,
+      username: req.session.passport.user.displayName,
       message: req.body.message,
       location: req.body.location,
       ID: IDcount,
@@ -43,7 +44,9 @@ module.exports = {
     });
 
     IDcount++;
-    res.end(tickets);
+
+    res.json(tickets);
+  
   },
 
   tagClaimed: (req, res) => {
