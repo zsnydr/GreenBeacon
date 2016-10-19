@@ -53,8 +53,10 @@ module.exports = {
   getTickets: (req, res) => {
     console.log('getTickets');
 
-
-    res.send(tickets);
+    Ticket.findAll({})
+          .then(function(tickets){
+              res.send(tickets);
+          })
   },
 
   addToQueue: (req, res) => {
