@@ -12,7 +12,6 @@ module.exports.router = (app) => {
   app.get('/callback', passport.authenticate('github', { failureRedirect: '/session' }), helpers.newUser, (req, res) => {
     req.session.cookie.passport = req.session.passport;
     res.redirect('/#/tickets');
-    });
   });
 
   app.get('/tickets', helpers.isLoggedIn, helpers.getTickets);
