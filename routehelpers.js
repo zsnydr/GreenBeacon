@@ -1,12 +1,37 @@
 
-var IDcount = 1;
+// var IDcount = 1;
 
-var tickets = [
-  { username: 'Natasha', message: 'HELP ME', location: 'Kitchen', ID: 1, date: new Date(), claimed: false, solved: false },
-  { username: 'Alina', message: 'Help with backbone', location: 'Couch', ID: 2, date: new Date(), claimed: false, solved: false },
-  { username: 'Conor', message: 'How do you react?', location: 'Pairing', ID: 3, date: new Date(), claimed: false, solved: false },
-  { username: 'Zack', message: 'ugh, Grunt', location: 'Lecture Hall', ID: 4, date: new Date(), claimed: false, solved: false }
-];
+// var tickets = [
+//   { username: 'Natasha', message: 'HELP ME', location: 'Kitchen', ID: 1, date: new Date(), claimed: false, solved: false },
+//   { username: 'Alina', message: 'Help with backbone', location: 'Couch', ID: 2, date: new Date(), claimed: false, solved: false },
+//   { username: 'Conor', message: 'How do you react?', location: 'Pairing', ID: 3, date: new Date(), claimed: false, solved: false },
+//   { username: 'Zack', message: 'ugh, Grunt', location: 'Lecture Hall', ID: 4, date: new Date(), claimed: false, solved: false }
+// ];
+
+var pg = require('pg');
+var Sequelize = require('sequelize');
+
+//Models
+var User = require('./db/schema').User;
+var Ticket = require('./db/schema').Ticket;
+var Claim = require('./db/schema').Claim;
+
+
+//establish database connection for querying
+var db = new Sequelize(process.env.DATABASE_URL, {
+ dialect: 'postgres'
+});
+
+db
+ .authenticate()
+ .then(function(err) {
+   console.log('Connection established');
+ })
+ .catch(function(err) {
+   console.log('Unable to connect: ', err);
+ });
+
+
 
 module.exports = {
 
@@ -27,7 +52,11 @@ module.exports = {
 
   getTickets: (req, res) => {
     console.log('getTickets');
-    res.send(tickets);
+
+    Ticket.findAll({})
+          .then(function(tickets){
+              res.send(tickets);
+          })
   },
 
   addToQueue: (req, res) => {
