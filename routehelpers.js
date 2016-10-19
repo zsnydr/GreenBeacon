@@ -38,9 +38,7 @@ module.exports = {
   newUser: (req, res, next/*, username, cb*/) => {
     User.findOrCreate({ where: { username: req.session.passport.user.username } })
       .then(function(user) {
-        console.log('USER ', user);
         req.session.cookie.userID = user[0].dataValues.id;
-        console.log('USER_ID ', req.session.cookie);
         next();
       });
   },
@@ -71,22 +69,16 @@ module.exports = {
 
   addToQueue: (req, res) => {
     console.log('addToQueue', req.body);
-  //  console.log('addtoq ', req.session.passport.user.displayName);
 
-    tickets.push({
-      username: req.session.passport.user.displayName,
-      message: req.body.message,
-      location: req.body.location,
-      ID: IDcount,
-      date: new Date(),
-      claimed: false,
-      solved: false
-    });
-
-    IDcount++;
-
-    res.json(tickets);
-
+    Ticket.create({ message: req.body.message, location: 'kitchen', userId: req.session.cookie.userID })
+      .then(function(ticket) {
+        console.log('NEW TICKET ', ticket);
+        Ticket.findAll({})
+          .then(function(tickets) {
+            console.log('ALL TICKETS ', tickets);
+            res.json(tickets);
+          });
+      });
   },
 
   tagClaimed: (req, res) => {

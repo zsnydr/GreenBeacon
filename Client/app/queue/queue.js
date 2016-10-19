@@ -18,7 +18,8 @@ angular.module('app.queue', [])
       })
   }
 
-$scope.ticket = {};
+  $scope.ticket = {};
+
   $scope.addTicket = function () {
     console.log('inside addTicket module ', $scope.ticket)
     Tickets.addTicket($scope.ticket)
@@ -38,7 +39,7 @@ $scope.ticket = {};
 
   $scope.claimTicket = function (ticket) {
     ticket.claimed = !ticket.claimed;
-    
+
     // Tickets.claimTicket(ticket)
     // .then(function () {
     //   initializeQueue();
