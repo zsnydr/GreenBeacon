@@ -47,19 +47,17 @@ module.exports = {
     IDcount++;
 
     res.json(tickets);
-  
+
   },
 
   tagClaimed: (req, res) => {
     console.log('claimed');
-    console.log('session', req.session)
-    console.log('body', req.body)
     for (let ticket of tickets) {
       if (ticket.ID === req.body.ID) {
         ticket.claimed = !ticket.claimed;
       }
     }
-    res.json(tickets);
+    res.end(tickets);
   },
 
   tagSolved: (req, res) => {
