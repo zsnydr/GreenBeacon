@@ -67,9 +67,9 @@ db
  .sync({force: false})
  .then(function() {
    console.log('Tables created');
-   return Ticket.create({message: 'Need help HELP', location: 'kitchen' }).then(function() {
-     console.log('Created new ticket');
-   });
+  //  return Ticket.create({message: 'Need help HELP', location: 'kitchen' }).then(function() {
+  //    console.log('Created new ticket');
+  //  });
  });
 
 module.exports = {
