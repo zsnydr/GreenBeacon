@@ -36,7 +36,7 @@ db
 module.exports = {
 
   newUser: (req, res, next/*, username, cb*/) => {
-    User.findOrCreate({ where: { username: username } })
+    User.findOrCreate({ where: { username: req.session.passport.user.username } })
       .then(function(user) {
         console.log('USER ', user);
         req.session.cookie.userID = user.id;
