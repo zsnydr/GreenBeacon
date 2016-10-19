@@ -10,9 +10,13 @@ module.exports.router = (app) => {
   });
 
   app.get('/callback', passport.authenticate('github', { failureRedirect: '/session' }), (req, res) => {
-   // console.log('SESSION:', req.session.passport);
     req.session.cookie.passport = req.session.passport;
-    res.redirect('/#/tickets');
+
+    helpers.newUser(req.session.cookie.passport.user.username, function(user) {
+      req.session.cookie.passport.user.userID = user.id;
+      console.log('USERID ', req.session.cookie.passport);
+      res.redirect('/#/tickets');
+    });
   });
 
   app.get('/tickets', helpers.isLoggedIn, helpers.getTickets);

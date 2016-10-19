@@ -35,6 +35,13 @@ db
 
 module.exports = {
 
+  newUser: (username, cb) => {
+    User.findOrCreate({ where: { username: username } })
+      .then(function(user) {
+        cb(user);
+      });
+  },
+
   isLoggedIn: (req, res, next) => {
     //console.log('SESSION ', req.session)
     if(req.session && req.session.passport && req.session.passport.user.username && req.session.passport.user.provider === 'github'){
