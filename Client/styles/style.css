@@ -17,3 +17,20 @@ body {
 .btn-primary {
 	width: 100px;
 }
+
+.btn-1 {
+	display: inline;
+	float:right;
+}
+
+.list-group-item-heading {
+	display: inline
+}
+
+.ticket-claimed {
+	background-color: grey;
+}
+
+.ticket-claimed:hover {
+	background-color: grey;
+}

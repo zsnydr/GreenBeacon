@@ -52,12 +52,14 @@ module.exports = {
 
   tagClaimed: (req, res) => {
     console.log('claimed');
+    console.log('session', req.session)
+    console.log('body', req.body)
     for (let ticket of tickets) {
       if (ticket.ID === req.body.ID) {
         ticket.claimed = !ticket.claimed;
       }
     }
-    res.end(tickets);
+    res.json(tickets);
   },
 
   tagSolved: (req, res) => {

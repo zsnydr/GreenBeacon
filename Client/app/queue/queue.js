@@ -36,6 +36,18 @@ $scope.ticket = {};
     Auth.signout();
   }
 
+  $scope.claimTicket = function (ticket) {
+    ticket.claimed = !ticket.claimed;
+    
+    Tickets.claimTicket(ticket)
+    .then(function () {
+      initializeQueue();
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+  }
+
   initializeQueue();
 
 }])
