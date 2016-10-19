@@ -75,7 +75,7 @@ module.exports = {
         console.log('NEW TICKET ', ticket);
         Ticket.findAll({})
           .then(function(tickets) {
-            console.log('ALL TICKETS ', tickets);
+            //console.log('ALL TICKETS ', tickets);
             res.json(tickets);
           });
       });
