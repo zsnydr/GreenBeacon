@@ -6,7 +6,7 @@
 
     <a class="list-group-item list-group-item-action" ng-class="{'ticket-claimed list-group-item list-group-item-action': ticket.claimed, 'list-group-item list-group-item-action': !ticket.claimed}">
 
-        <h5 class="list-group-item-heading"> {{ticket.username}}</h5>
+        <h5 class="list-group-item-heading"> {{ticket.user.username}}</h5>
         <button class = 'btn btn-1' type = 'button' ng-disabled = 'ticket.claimed' ng-click='claimTicket(ticket)'>Claim</button>
         <p class="list-group-item-text">{{ ticket.message }} </p>
 
@@ -29,11 +29,11 @@
                     <option value = 'The Dijkstra'>The Dijkstra</option>
                     <option value = 'The Ada'>The Ada</option>
                     <option value = 'Entrance Hall'>Entrance Hall</option>
-       </select>  
+       </select>
        <input name='ticket' class='input-text' type="text"
         ng-model="ticket.message"
         placeholder="Enter your question here" required/>
-       
+
 
       <input class = 'btn-primary' type = 'submit' value = 'Add'>
 
