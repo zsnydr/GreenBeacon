@@ -61,10 +61,11 @@ module.exports = {
   getTickets: (req, res) => {
     console.log('getTickets');
 
-    Ticket.findAll({})
-          .then(function(tickets){
-              res.send(tickets);
-          })
+    Ticket.findAll({ include: [User] })
+      .then(function(tickets){
+        console.log('TICKETS WITH USER ', tickets);
+        res.send(tickets);
+      });
   },
 
   addToQueue: (req, res) => {
