@@ -47,6 +47,7 @@ angular.module('app.queue', [])
     // .catch(function (err) {
     //   console.log(err);
     // });
+
   }
 
   initializeQueue();
