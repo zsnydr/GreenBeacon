@@ -57,7 +57,7 @@ module.exports = {
         ticket.claimed = !ticket.claimed;
       }
     }
-    res.end(tickets);
+    res.json(tickets);
   },
 
   tagSolved: (req, res) => {

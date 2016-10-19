@@ -4,7 +4,7 @@
  <div class="list-group">
      <div class='ticket' ng-repeat='ticket in data.tickets'>
 
-    <a class="list-group-item list-group-item-action" ng-class="{'ticket-claimed': ticket.claimed, 'list-group-item list-group-item-action': !ticket.claimed}">
+    <a class="list-group-item list-group-item-action" ng-class="{'ticket-claimed list-group-item list-group-item-action': ticket.claimed, 'list-group-item list-group-item-action': !ticket.claimed}">
 
         <h5 class="list-group-item-heading"> {{ticket.username}}</h5>
         <button class = 'btn btn-1' type = 'button' ng-disabled = 'ticket.claimed' ng-click='claimTicket(ticket)'>Claim</button>
