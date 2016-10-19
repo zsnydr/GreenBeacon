@@ -38,7 +38,7 @@ module.exports = {
   newUser: (req, res, next/*, username, cb*/) => {
     User.findOrCreate({ where: { username: req.session.passport.user.username } })
       .then(function(user) {
-        req.session.cookie.userID = user[0].dataValues.id;
+        req.session.userID = user[0].dataValues.id;
         next();
       });
   },
@@ -70,7 +70,7 @@ module.exports = {
   addToQueue: (req, res) => {
     console.log('addToQueue', req.session);
 
-    Ticket.create({ message: req.body.message, location: req.body.location, userId: req.session.cookie.userID })
+    Ticket.create({ message: req.body.message, location: req.body.location, userId: req.session.userID })
       .then(function(ticket) {
         //console.log('NEW TICKET ', ticket);
         Ticket.findAll({})
