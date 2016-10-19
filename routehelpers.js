@@ -39,7 +39,7 @@ module.exports = {
     User.findOrCreate({ where: { username: req.session.passport.user.username } })
       .then(function(user) {
         console.log('USER ', user);
-        req.session.cookie.userID = user.id;
+        req.session.cookie.userID = user[0].dataValues.id;
         console.log('USER_ID ', req.session.cookie);
         next();
       });
