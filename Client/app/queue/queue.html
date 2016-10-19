@@ -18,14 +18,8 @@
 
 
 <form name='input-group' class='input-group' ng-submit= 'addTicket()'>
-
-     <input name='ticket' class='input-text' type="text"
-        ng-model="ticket.message"
-        placeholder="Enter your question here" required/>
-
-      <input class = 'btn-primary' type = 'submit' value = 'Add'>
-
-       <select class="form-control" ng-model = "ticket.location" required>
+       <label for="select"> Select your location: </label>
+       <select name= 'select' class="form-control" ng-model = "ticket.location" required>
                     <option value = 'Lecture Hall'>Lecture Hall</option>
                     <option value = 'Pairing Station'>Pairing Station</option>
                     <option value = 'Kitchen'>Kitchen</option>
@@ -36,6 +30,14 @@
                     <option value = 'The Ada'>The Ada</option>
                     <option value = 'Entrance Hall'>Entrance Hall</option>
        </select>  
+       <input name='ticket' class='input-text' type="text"
+        ng-model="ticket.message"
+        placeholder="Enter your question here" required/>
+       
+
+      <input class = 'btn-primary' type = 'submit' value = 'Add'>
+
+
 
 </form>
 
