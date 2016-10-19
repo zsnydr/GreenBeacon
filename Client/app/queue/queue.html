@@ -6,7 +6,7 @@
 
     <a class="list-group-item list-group-item-action" ng-class="{'ticket-claimed list-group-item list-group-item-action': ticket.claimed, 'list-group-item list-group-item-action': !ticket.claimed}">
 
-        <h5 class="list-group-item-heading"> {{ticket.user.username}}</h5>
+        <h5 class="list-group-item-heading"> {{ticket.user.displayname}}</h5>
         <button class = 'btn btn-1' type = 'button' ng-disabled = 'ticket.claimed' ng-click='claimTicket(ticket)'>Claim</button>
         <p class="list-group-item-text">{{ ticket.message }} </p>
 
