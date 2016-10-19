@@ -68,7 +68,7 @@ module.exports = {
   },
 
   addToQueue: (req, res) => {
-    console.log('addToQueue', req.body);
+    console.log('addToQueue', req.session);
 
     Ticket.create({ message: req.body.message, location: 'kitchen', userId: req.session.cookie.userID })
       .then(function(ticket) {
