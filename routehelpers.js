@@ -35,10 +35,12 @@ db
 
 module.exports = {
 
-  newUser: (username, cb) => {
+  newUser: (req, res, next/*, username, cb*/) => {
     User.findOrCreate({ where: { username: username } })
       .then(function(user) {
-        cb(user);
+        req.session.cookie.userID = user.id;
+        console.log('USERID ', req.session.cookie);
+        next();
       });
   },
 

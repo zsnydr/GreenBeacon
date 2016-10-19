@@ -9,13 +9,9 @@ module.exports.router = (app) => {
     // function will not be called.
   });
 
-  app.get('/callback', passport.authenticate('github', { failureRedirect: '/session' }), (req, res) => {
+  app.get('/callback', passport.authenticate('github', { failureRedirect: '/session' }), helpers.newUser, (req, res) => {
     req.session.cookie.passport = req.session.passport;
-
-    helpers.newUser(req.session.cookie.passport.user.username, function(user) {
-      req.session.cookie.passport.user.userID = user.id;
-      console.log('USERID ', req.session.cookie.passport);
-      res.redirect('/#/tickets');
+    res.redirect('/#/tickets');
     });
   });
 
