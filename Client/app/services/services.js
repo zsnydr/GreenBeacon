@@ -30,9 +30,18 @@ angular.module('app.services', [])
     });
   };
 
+  var claimTicket = function (ticket) {
+    return $http({
+      method: 'PUT',
+      url: '/claimed',
+      data: ticket
+    })
+  }
+
   return {
     getTickets: getTickets,
-    addTicket: addTicket
+    addTicket: addTicket,
+    claimTicket: claimTicket
   }
 
 }])
