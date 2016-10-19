@@ -32,11 +32,13 @@ passport.use(new GitHubStrategy({
   }
 ));
 
+app.use(express.cookieParser());
+
 app.use(session({
   secret: 'secret',
   resave: true,
   saveUninitialized: true,
-  cookie: {maxAge: 600000*3} //30 mins 
+  cookie: {maxAge: 600000*3} //30 mins
 }));
 
 app.use(passport.initialize());
