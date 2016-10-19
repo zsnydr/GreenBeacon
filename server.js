@@ -32,8 +32,6 @@ passport.use(new GitHubStrategy({
   }
 ));
 
-app.use(express.cookieParser());
-
 app.use(session({
   secret: 'secret',
   resave: true,
