@@ -23,7 +23,8 @@ var User = db.define('user', {
    primaryKey: true,
    autoIncrement: true
  },
- username: Sequelize.STRING
+ username: Sequelize.STRING,
+ displayname: Sequelize.STRING
 });
 
 var Ticket = db.define('ticket', {

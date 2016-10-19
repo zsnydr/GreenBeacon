@@ -36,7 +36,7 @@ db
 module.exports = {
 
   newUser: (req, res, next/*, username, cb*/) => {
-    User.findOrCreate({ where: { username: req.session.passport.user.username } })
+    User.findOrCreate({ where: { username: req.session.passport.user.username, displayname: req.session.passport.user.displayName } })
       .then(function(user) {
         req.session.userID = user[0].dataValues.id;
         next();
