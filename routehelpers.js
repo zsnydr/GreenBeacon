@@ -38,8 +38,9 @@ module.exports = {
   newUser: (req, res, next/*, username, cb*/) => {
     User.findOrCreate({ where: { username: username } })
       .then(function(user) {
+        console.log('USER ', user);
         req.session.cookie.userID = user.id;
-        console.log('USERID ', req.session.cookie);
+        console.log('USER_ID ', req.session.cookie);
         next();
       });
   },
