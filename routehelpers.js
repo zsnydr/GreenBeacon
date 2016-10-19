@@ -81,7 +81,7 @@ module.exports = {
 
   tagClaimed: (req, res) => {
     console.log('claimed');
-    for (let ticket of tickets) {
+    for (var ticket of tickets) {
       if (ticket.ID === req.body.ID) {
         ticket.claimed = !ticket.claimed;
       }
@@ -91,7 +91,7 @@ module.exports = {
 
   tagSolved: (req, res) => {
     console.log('solved');
-    for (let ticket of tickets) {
+    for (var ticket of tickets) {
       if (ticket.ID === req.body.ID) {
         ticket.solved = true;
       }
