@@ -38,7 +38,7 @@ angular.module('app.queue', [])
   }
 
   $scope.claimTicket = function (ticket) {
-    ticket.claimed = !ticket.claimed;
+    //ticket.claimed = !ticket.claimed;
 
     Tickets.claimTicket(ticket)
     .then(function () {
