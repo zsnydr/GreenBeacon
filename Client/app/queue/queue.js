@@ -2,7 +2,7 @@
 
 angular.module('app.queue', [])
 
-.controller('QueueController', ['$scope', 'Tickets', 'Auth', function($scope, Tickets, Auth){
+.controller('QueueController', ['$scope', 'Tickets', 'Auth', '$interval', function($scope, Tickets, Auth, $interval){
 
   //call getTickets from Tickets factory
   $scope.data = {};
@@ -99,6 +99,6 @@ angular.module('app.queue', [])
     });
   }
 
-setTimeout(initializeQueue, 3000);
+$interval(initializeQueue, 3000);
 
 }])
