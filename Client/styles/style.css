@@ -1,9 +1,14 @@
 body {
 	font-family: "PT Mono", "Times New Roman", serif
 }
+
+.list-group {
+	overflow:auto;
+}
+
 .list-group, .input-group {
     width: 400px;
-    margin: 0 auto; 
+    margin: 0 auto;
 }
 .input-group {
 
