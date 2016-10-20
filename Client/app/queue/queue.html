@@ -27,7 +27,7 @@
     </form>
 
  <div class="list-group">
-     <div class='ticket' ng-repeat='ticket in data.tickets | filter: {solved: false} | orderBy:'-id' '>
+     <div class='ticket' ng-repeat='ticket in data.tickets | filter: {solved: false} | orderBy:"-id" '>
 
     <a class="list-group-item list-group-item-action" ng-class="{'ticket-claimed list-group-item list-group-item-action': ticket.claimed, 'list-group-item list-group-item-action': !ticket.claimed}">
 
