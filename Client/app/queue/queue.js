@@ -17,7 +17,10 @@ angular.module('app.queue', [])
         for (var claim of $scope.data.claims) {
           if (claim.helpeeId === results.data.userID) {
             alert('YOUR TICKET HAS BEEN CLAIMED');
-            Ticket.eraseClaim(claim);
+            Ticket.eraseClaim(claim)
+            .then(function () {
+               $scope.data.claims = {};
+            })
           }
         }
       })
