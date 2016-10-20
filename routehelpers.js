@@ -115,12 +115,13 @@ module.exports = {
 
   tagSolved: (req, res) => {
     console.log('solved');
-    for (var ticket of tickets) {
-      if (ticket.ID === req.body.ID) {
-        ticket.solved = true;
-      }
-    }
-    res.end(tickets);
+    Ticket.find({where: {id: req.body.id}})
+      .then(function(ticket) {
+        ticket.update({ solved: true })
+          .then(function () {
+            res.end();
+          });
+      });
   }
 
 };

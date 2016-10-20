@@ -2,14 +2,14 @@
 
 <div ng-controller='QueueController'>
  <div class="list-group">
-     <div class='ticket' ng-repeat='ticket in data.tickets'>
+     <div class='ticket' ng-repeat='ticket in data.tickets | filter: {solved: false}'>
 
     <a class="list-group-item list-group-item-action" ng-class="{'ticket-claimed list-group-item list-group-item-action': ticket.claimed, 'list-group-item list-group-item-action': !ticket.claimed}">
 
         <h5 class="list-group-item-heading"> {{ticket.user.displayname}}</h5>
         <button class = 'btn btn-1' type = 'button' ng-show = '!ticket.ismine' ng-disabled = 'ticket.claimed' ng-click='claimTicket(ticket)'>Claim</button>
 
-        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine'>Solved</button>
+        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine' ng-click='solveTicket(ticket)'>Solved</button>
         <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine'>Not Solved</button>
 
 
