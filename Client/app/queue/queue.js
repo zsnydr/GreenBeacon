@@ -6,17 +6,28 @@ angular.module('app.queue', [])
 
   //call getTickets from Tickets factory
   $scope.data = {};
+ //$scope.flag = false;
 
   var initializeQueue = function() {
     Tickets.getTickets()
       .then(function(results){
         console.log("inside initialize ", results)
-        $scope.data.tickets = results.data.tickets;
 
+        $scope.data.tickets = results.data.tickets;
+        for (var ticket of $scope.data.tickets) {
+          ticket.solvedBtn = false;
+        }
         $scope.data.claims = results.data.claims;
+
         for (var claim of $scope.data.claims) {
           if (claim.helpeeId === results.data.userID) {
             alert(claim.user.displayname + ' is on their way!');
+            
+            for (var ticket of $scope.data.tickets) {
+              if (ticket.claimed && ticket.userId === results.data.userID) {
+                ticket.solvedBtn = true;
+              }
+            }
             Tickets.eraseClaim(claim)
             .then(function () {
                $scope.data.claims = {};
