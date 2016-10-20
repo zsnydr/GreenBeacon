@@ -11,11 +11,11 @@ angular.module('app.queue', [])
     Tickets.getTickets()
       .then(function(results){
         console.log("inside initialize ", results)
-        $scope.data.tickets = results.tickets.data;
+        $scope.data.tickets = results.data.tickets;
 
-        $scope.data.claims = results.claims.data;
+        $scope.data.claims = results.data.claims;
         for (var claim of $scope.data.claims) {
-          if (claim.userId === results.userID.data) {
+          if (claim.userId === results.data.userID) {
             alert('YOUR TICKET HAS BEEN CLAIMED');
           }
         }
