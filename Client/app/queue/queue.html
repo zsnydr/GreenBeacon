@@ -9,7 +9,9 @@
         <h5 class="list-group-item-heading"> {{ticket.user.displayname}}</h5>
         <button class = 'btn btn-1' type = 'button' ng-show = '!ticket.preSolved' ng-disabled = 'ticket.claimed' ng-click='claimTicket(ticket)'>Claim</button>
 
-        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved'>Solved</button>
+        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine'>Solved</button>
+        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine'>Not Solved</button>
+
 
         <p class="list-group-item-text">{{ ticket.message }} </p>
 
