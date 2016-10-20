@@ -84,11 +84,12 @@ module.exports = {
 
   tagClaimed: (req, res) => {
     console.log('claimed ', req.body.id);
-    var tic = Ticket.find({ where: { id: req.body.id } });
-
-    tic.update({ claimed: !req.body.claimed })
-      .then(function() {
-        res.end();
+    Ticket.find({ where: { id: req.body.id } })
+      .then(function(ticket) {
+        ticket.update({ claimed: !req.body.claimed })
+          .then(function() {
+            res.end();
+          });
       });
   },
 
