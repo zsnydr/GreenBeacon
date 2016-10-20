@@ -50,7 +50,8 @@ var Claim = db.define('claim', {
    type: Sequelize.INTEGER,
    primaryKey: true,
    autoIncrement: true
- }
+ },
+ helpeeId: Sequelize.INTEGER
 });
 
 

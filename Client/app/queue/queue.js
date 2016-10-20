@@ -15,7 +15,7 @@ angular.module('app.queue', [])
 
         $scope.data.claims = results.data.claims;
         for (var claim of $scope.data.claims) {
-          if (claim.userId === results.data.userID) {
+          if (claim.helpeeId === results.data.userID) {
             alert('YOUR TICKET HAS BEEN CLAIMED');
           }
         }
