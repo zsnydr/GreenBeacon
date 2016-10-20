@@ -99,6 +99,14 @@ module.exports = {
       });
   },
 
+  eraseClaim: (req, res) => {
+    console.log('eraseClaim', req.body);
+    Claim.destory({ where: { id: req.body.id } })
+      .then(function() {
+        res.end();
+      });
+  },
+
   tagSolved: (req, res) => {
     console.log('solved');
     for (var ticket of tickets) {
