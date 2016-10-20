@@ -10,7 +10,7 @@
         <button class = 'btn btn-1' type = 'button' ng-show = '!ticket.ismine' ng-disabled = 'ticket.claimed' ng-click='claimTicket(ticket)'>Claim</button>
 
         <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine' ng-click='solveTicket(ticket)'>Solved</button>
-        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine'>Not Solved</button>
+        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine' ng-click='unsolveTicket(ticket)'>Not Solved</button>
 
 
         <p class="list-group-item-text">{{ ticket.message }} </p>

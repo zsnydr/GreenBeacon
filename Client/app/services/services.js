@@ -54,12 +54,23 @@ angular.module('app.services', [])
     })
   }
 
+
+    var unsolveTicket = function (ticket) {
+    return $http({
+      method: 'PUT',
+      url: '/unsolved',
+      data: ticket
+    })
+  }
+
   return {
     getTickets: getTickets,
     addTicket: addTicket,
     claimTicket: claimTicket,
     eraseClaim: eraseClaim,
-    solveTicket: solveTicket
+    solveTicket: solveTicket,
+    unsolveTicket: unsolveTicket
+    
 
   }
 
