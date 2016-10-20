@@ -16,7 +16,7 @@ angular.module('app.queue', [])
         $scope.data.claims = results.data.claims;
         for (var claim of $scope.data.claims) {
           if (claim.helpeeId === results.data.userID) {
-            alert('YOUR TICKET HAS BEEN CLAIMED');
+            alert(claim.user.displayname + ' is on their way!');
             Tickets.eraseClaim(claim)
             .then(function () {
                $scope.data.claims = {};
