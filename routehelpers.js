@@ -83,7 +83,7 @@ module.exports = {
   },
 
   tagClaimed: (req, res) => {
-    console.log('claimed');
+    console.log('claimed ', req.body);
     Ticket.find({ where: { id: req.body.id } })
       .update({ claimed: !claimed })
       .then(function() {
