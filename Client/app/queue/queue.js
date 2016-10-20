@@ -76,6 +76,17 @@ angular.module('app.queue', [])
 
   }
 
+  $scope.solveTicket = function (ticket) {
+
+     Tickets.solveTicket(ticket)
+    .then(function () {
+      initializeQueue();
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+  }
+
   initializeQueue();
 
 }])
