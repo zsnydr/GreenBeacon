@@ -10,7 +10,7 @@ angular.module('app.queue', [])
   var initializeQueue = function() {
     Tickets.getTickets()
       .then(function(results){
-        console.log("inside initialize ", results.tickets)
+        console.log("inside initialize ", results)
         $scope.data.tickets = results.tickets.data;
 
         $scope.data.claims = results.claims.data;
