@@ -1,56 +1,63 @@
 <!-- Queue template -->
 <div id='big-container'>
-<div ng-controller='QueueController'>
 
- <div class="list-group">
-     <div class='ticket' ng-repeat='ticket in data.tickets | filter: {solved: false} | orderBy:"-id" '>
+	<div id='queueContainer' ng-controller='QueueController'>
 
-    <a class="list-group-item list-group-item-action" ng-class="{'ticket-claimed list-group-item list-group-item-action': ticket.claimed, 'list-group-item list-group-item-action': !ticket.claimed}">
+  
 
-        <h5 class="list-group-item-heading"> {{ticket.user.displayname}}</h5>
-        <button class = 'btn btn-1' type = 'button' ng-show = '!ticket.ismine' ng-disabled = 'ticket.claimed' ng-click='claimTicket(ticket)'>Claim</button>
+	 <div class="list-group">
+	     <div class='ticket' ng-repeat='ticket in data.tickets | filter: {solved: false} | orderBy:"-id" '>
 
-        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine' ng-click='solveTicket(ticket)'>Solved</button>
-        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine' ng-click='unsolveTicket(ticket)'>Not Solved</button>
+	    <a class="list-group-item list-group-item-action" ng-class="{'ticket-claimed list-group-item list-group-item-action': ticket.claimed, 'list-group-item list-group-item-action': !ticket.claimed}">
 
+	        <h5 class="list-group-item-heading"> {{ticket.user.displayname}}</h5>
+	        <button class = 'btn btn-1' type = 'button' ng-show = '!ticket.ismine' ng-disabled = 'ticket.claimed' ng-click='claimTicket(ticket)'>Claim</button>
 
-        <p class="list-group-item-text">{{ ticket.message }} </p>
-
-    </a>
-
-     </div>
- </div>
-
-  <form name='input-group' class='input-group' ng-submit= 'addTicket()'>
-       <label for="select"> Select your location: </label>
-       <select name= 'select' class="form-control" ng-model = "ticket.location" required>
-                    <option value = 'Lecture Hall'>Lecture Hall</option>
-                    <option value = 'Pairing Station'>Pairing Station</option>
-                    <option value = 'Kitchen'>Kitchen</option>
-                    <option value = 'Couch'>Couch</option>
-                    <option value = 'Senior Zone'>Senior Zone</option>
-                    <option value = 'The Hopper'>The Hopper</option>
-                    <option value = 'The Dijkstra'>The Dijkstra</option>
-                    <option value = 'The Ada'>The Ada</option>
-                    <option value = 'Entrance Hall'>Entrance Hall</option>
-       </select>
-       <input name='ticket' class='input-text' type="text"
-        ng-model="ticket.message"
-        placeholder="Enter your question here" required/>
+	        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine' ng-click='solveTicket(ticket)'>Solved</button>
+	        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine' ng-click='unsolveTicket(ticket)'>Not Solved</button>
 
 
-      <input class = 'btn-primary' type = 'submit' value = 'Add'>
+	        <p class="list-group-item-text">{{ ticket.message }} </p>
 
-    </form>
+	    </a>
+
+	     </div>
+	 </div>
+
+	  <form name='input-group' class='input-group' ng-submit= 'addTicket()'>
+	       <label for="select"> Select your location: </label>
+	       <select name= 'select' class="form-control" ng-model = "ticket.location" required>
+	                    <option value = 'Lecture Hall'>Lecture Hall</option>
+	                    <option value = 'Pairing Station'>Pairing Station</option>
+	                    <option value = 'Kitchen'>Kitchen</option>
+	                    <option value = 'Couch'>Couch</option>
+	                    <option value = 'Senior Zone'>Senior Zone</option>
+	                    <option value = 'The Hopper'>The Hopper</option>
+	                    <option value = 'The Dijkstra'>The Dijkstra</option>
+	                    <option value = 'The Ada'>The Ada</option>
+	                    <option value = 'Entrance Hall'>Entrance Hall</option>
+	       </select>
+	       <input name='ticket' class='input-text' type="text"
+	        ng-model="ticket.message"
+	        placeholder="Enter your question here" required/>
 
 
+	      <input class = 'btn-primary' type = 'submit' value = 'Add'>
 
-    <button type="button" class="btn btn-default" ng-click='signout()'>Sign out</button>
-
-</div>
-
-<div id = 'map'>
+	    </form>
 
 
-</div>
+         <button type="button" class="signout btn btn-default" ng-click='signout()'>Sign out</button>
+
+
+	</div>
+
+	<div id = 'map'>
+		<svg width="400" height="800" >
+			<image x="0" y="0" width="400" height="800" xlink:href="../../../smaller.png" />
+
+			</image>
+		</svg>
+	</div>
+
 </div>
