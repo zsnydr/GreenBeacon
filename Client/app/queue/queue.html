@@ -1,28 +1,8 @@
 <!-- Queue template -->
 
 <div ng-controller='QueueController'>
- <div class="list-group">
-     <div class='ticket' ng-repeat='ticket in data.tickets | filter: {solved: false}'>
 
-    <a class="list-group-item list-group-item-action" ng-class="{'ticket-claimed list-group-item list-group-item-action': ticket.claimed, 'list-group-item list-group-item-action': !ticket.claimed}">
-
-        <h5 class="list-group-item-heading"> {{ticket.user.displayname}}</h5>
-        <button class = 'btn btn-1' type = 'button' ng-show = '!ticket.ismine' ng-disabled = 'ticket.claimed' ng-click='claimTicket(ticket)'>Claim</button>
-
-        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine' ng-click='solveTicket(ticket)'>Solved</button>
-        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine' ng-click='unsolveTicket(ticket)'>Not Solved</button>
-
-
-        <p class="list-group-item-text">{{ ticket.message }} </p>
-
-    </a>
-
-     </div>
- </div>
-
-
-
-<form name='input-group' class='input-group' ng-submit= 'addTicket()'>
+    <form name='input-group' class='input-group' ng-submit= 'addTicket()'>
        <label for="select"> Select your location: </label>
        <select name= 'select' class="form-control" ng-model = "ticket.location" required>
                     <option value = 'Lecture Hall'>Lecture Hall</option>
@@ -44,7 +24,29 @@
 
 
 
-</form>
+    </form>
+
+ <div class="list-group">
+     <div class='ticket' ng-repeat='ticket in data.tickets | filter: {solved: false} | orderBy:'-id' '>
+
+    <a class="list-group-item list-group-item-action" ng-class="{'ticket-claimed list-group-item list-group-item-action': ticket.claimed, 'list-group-item list-group-item-action': !ticket.claimed}">
+
+        <h5 class="list-group-item-heading"> {{ticket.user.displayname}}</h5>
+        <button class = 'btn btn-1' type = 'button' ng-show = '!ticket.ismine' ng-disabled = 'ticket.claimed' ng-click='claimTicket(ticket)'>Claim</button>
+
+        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine' ng-click='solveTicket(ticket)'>Solved</button>
+        <button class = 'btn btn-1' type = 'button' ng-show = 'ticket.preSolved && ticket.ismine' ng-click='unsolveTicket(ticket)'>Not Solved</button>
+
+
+        <p class="list-group-item-text">{{ ticket.message }} </p>
+
+    </a>
+
+     </div>
+ </div>
+
+
+
 
 
     <button type="button" class="btn btn-default" ng-click='signout()'>Sign out</button>
