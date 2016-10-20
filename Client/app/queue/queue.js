@@ -9,9 +9,16 @@ angular.module('app.queue', [])
 
   var initializeQueue = function() {
     Tickets.getTickets()
-      .then(function(tickets){
-        console.log("inside initialize ", tickets)
-        $scope.data.tickets = tickets.data;
+      .then(function(results){
+        console.log("inside initialize ", results.tickets)
+        $scope.data.tickets = results.tickets.data;
+
+        $scope.data.claims = results.claims.data;
+        for (var claim of $scope.data.claims) {
+          if (claim.userId === results.userID.data) {
+            alert('YOUR TICKET HAS BEEN CLAIMED');
+          }
+        }
       })
       .catch(function(error){
         console.error(error);
