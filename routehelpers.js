@@ -84,12 +84,11 @@ module.exports = {
 
   tagClaimed: (req, res) => {
     console.log('claimed');
-    for (var ticket of tickets) {
-      if (ticket.ID === req.body.ID) {
-        ticket.claimed = !ticket.claimed;
-      }
-    }
-    res.json(tickets);
+    Ticket.find({ where: { id: req.body.id } })
+      .update({ claimed: !claimed })
+      .then(function() {
+        res.end();
+      });
   },
 
   tagSolved: (req, res) => {

@@ -31,7 +31,6 @@ angular.module('app.services', [])
   };
 
   var claimTicket = function (ticket) {
-    console.log('TICKET IN CLAIMTICKET ', ticket)
     return $http({
       method: 'PUT',
       url: '/claimed',
