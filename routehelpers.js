@@ -64,7 +64,10 @@ module.exports = {
     Ticket.findAll({ include: [User] })
       .then(function(tickets){
         console.log('TICKETS WITH USER ', tickets);
-        res.send(tickets);
+        Claim.findAll({ include: [User, Ticket] })
+          .then(function(claims) {
+            res.send({ tickets: tickets, claims: claims, userID: req.session.userID });
+          });
       });
   },
 
