@@ -42,6 +42,10 @@ var Ticket = db.define('ticket', {
  solved: {
    type: Sequelize.BOOLEAN,
    defaultValue: false
+ },
+  preSolved: {
+   type: Sequelize.BOOLEAN,
+   defaultValue: false
  }
 });
 

@@ -103,7 +103,13 @@ module.exports = {
     console.log('eraseClaim', req.body);
     Claim.destroy({ where: { id: req.body.id } })
       .then(function() {
-        res.end();
+        Ticket.find({where: {id: req.body.ticketId } })
+          .then(function (ticket) {
+            ticket.update({ preSolved: true } )
+              .then(function (){
+                res.end();
+              });
+          });  
       });
   },
 
