@@ -91,7 +91,7 @@ module.exports = {
       .then(function(ticket) {
         ticket.update({ claimed: !req.body.claimed })
           .then(function() {
-            Claim.create({ userId: req.session.userID, ticketId: req.body.id })
+            Claim.create({ userId: req.session.userID, ticketId: req.body.id, helpeeId: req.body.userId })
               .then(function() {
                 res.end();
               });
