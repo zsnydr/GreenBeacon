@@ -3,7 +3,7 @@ var pg = require('pg')
 var Sequelize = require('sequelize');
 
 
-var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:3000/beacon', {
+var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/beacon', {
  dialect: 'postgres'
 });
 
