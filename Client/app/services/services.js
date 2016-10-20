@@ -38,10 +38,19 @@ angular.module('app.services', [])
     })
   }
 
+  var eraseClaim = function (claim) {
+    return $http({
+      method: 'POST',
+      url: '/eraseClaim',
+      data: claim
+    })
+  }
+
   return {
     getTickets: getTickets,
     addTicket: addTicket,
-    claimTicket: claimTicket
+    claimTicket: claimTicket,
+    eraseClaim: eraseClaim
   }
 
 }])
