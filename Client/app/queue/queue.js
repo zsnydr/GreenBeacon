@@ -14,7 +14,13 @@ angular.module('app.queue', [])
         console.log("inside initialize ", results)
 
         $scope.data.tickets = results.data.tickets;
-      
+        for (var ticket of $scope.data.tickets) {
+          if (ticket.userId === results.data.userID) {
+            ticket.ismine = true;
+          } else {
+            ticket.ismine = false;
+          }
+        }
         $scope.data.claims = results.data.claims;
 
         for (var claim of $scope.data.claims) {
