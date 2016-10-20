@@ -88,7 +88,10 @@ module.exports = {
       .then(function(ticket) {
         ticket.update({ claimed: !req.body.claimed })
           .then(function() {
-            res.end();
+            Claim.create({ userId: req.session.userID, ticketId: req.body.id })
+              .then(function() {
+                res.end();
+              });
           });
       });
   },
