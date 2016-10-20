@@ -99,6 +99,6 @@ angular.module('app.queue', [])
     });
   }
 
-  initializeQueue();
+setTimeout(initializeQueue, 3000);
 
 }])
