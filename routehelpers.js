@@ -89,7 +89,7 @@ module.exports = {
     console.log('claimed ', req.body.id);
     Ticket.find({ where: { id: req.body.id } })
       .then(function(ticket) {
-        ticket.update({ claimed: !req.body.claimed })
+        ticket.update({ claimed: true })
           .then(function() {
             Claim.create({ userId: req.session.userID, ticketId: req.body.id, helpeeId: req.body.userId })
               .then(function() {
@@ -118,6 +118,17 @@ module.exports = {
     Ticket.find({where: {id: req.body.id}})
       .then(function(ticket) {
         ticket.update({ solved: true })
+          .then(function () {
+            res.end();
+          });
+      });
+  },
+
+  tagUnSolved: (req, res) => {
+    console.log('solved');
+    Ticket.find({where: {id: req.body.id}})
+      .then(function(ticket) {
+        ticket.update({ preSolved: false, claimed: false })
           .then(function () {
             res.end();
           });

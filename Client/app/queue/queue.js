@@ -87,6 +87,18 @@ angular.module('app.queue', [])
     });
   }
 
+
+  $scope.unsolveTicket = function (ticket) {
+
+     Tickets.unsolveTicket(ticket)
+    .then(function () {
+      initializeQueue();
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+  }
+
   initializeQueue();
 
 }])

@@ -24,6 +24,8 @@ module.exports.router = (app) => {
 
   app.put('/solved', helpers.isLoggedIn, helpers.tagSolved);
 
+  app.put('/unsolved', helpers.isLoggedIn, helpers.tagUnSolved);
+
   app.get('/signout', helpers.isLoggedIn, helpers.terminateSession)
 
 };
