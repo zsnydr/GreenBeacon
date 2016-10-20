@@ -18,7 +18,7 @@ var Claim = require('./db/schema').Claim;
 
 
 //establish database connection for querying
-var db = new Sequelize(process.env.DATABASE_URL, {
+var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:3000/beacon', {
  dialect: 'postgres'
 });
 
@@ -109,7 +109,7 @@ module.exports = {
               .then(function (){
                 res.end();
               });
-          });  
+          });
       });
   },
 
