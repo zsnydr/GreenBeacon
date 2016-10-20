@@ -20,6 +20,8 @@ module.exports.router = (app) => {
 
   app.put('/claimed', helpers.isLoggedIn, helpers.tagClaimed);
 
+  app.post('/eraseClaim', helpers.isLoggedIn, helpers.eraseClaim);
+
   app.put('/solved', helpers.isLoggedIn, helpers.tagSolved);
 
   app.get('/signout', helpers.isLoggedIn, helpers.terminateSession)
