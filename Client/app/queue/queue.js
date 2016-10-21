@@ -6,7 +6,37 @@ angular.module('app.queue', [])
 
   //call getTickets from Tickets factory
   $scope.data = {};
+ 
  //$scope.flag = false;
+  $scope.setClass = function (ticketX, ticketY) {
+   
+    
+    var SVGpulse = document.getElementsByClassName('pulse');  
+    var SVGdot = document.getElementsByClassName('dot');
+
+      //for (var pulse of SVGpulse) {
+        for (var i = 0; i<SVGdot.length; i++) {
+        var x = SVGdot[i].parentElement.parentElement.getAttribute('x');
+        var y = SVGdot[i].parentElement.parentElement.getAttribute('y');
+        console.log('x', x, 'ticketX', ticketX, 'y', y, 'ticketY', ticketY);
+        if (x !== ticketX.toString() && y !== ticketY.toString()) {
+
+          SVGpulse[i].setAttribute('class', 'hiddenPulse');
+          SVGdot[i].setAttribute('class', 'hiddenDot');
+        }
+     }
+  }  
+
+  $scope.removeClass = function (ticketX, ticketY) {
+ 
+
+
+    // var mySVG = document.querySelector('.active1');
+    // var mySVG2 = document.querySelector('.active2');
+    // mySVG.setAttribute('class', 'pulse');
+    // mySVG2.setAttribute('class', 'dot');
+    // initializeQueue();
+ }
 
   var initializeQueue = function() {
     Tickets.getTickets()

@@ -84,6 +84,7 @@ h1 {
 #map {
 	float: right;
 	margin-top: -30px;
+	position: absolute;
 }
 
 .signout {
@@ -94,6 +95,12 @@ h1 {
 	
 }
 
+.hiddenDot {
+	display: none;
+}
+.hiddenPulse {
+	display: none;
+}
 #holder {
 	margin: 50px auto;
 	width: 50px;

@@ -6,8 +6,9 @@
   
 
 	<div class="list-group">
-	    <div class='ticket' ng-repeat='ticket in data.tickets | filter: {solved: false} | orderBy:"-id" '>
-	    <a class="list-group-item list-group-item-action" ng-class="{'ticket-claimed list-group-item list-group-item-action': ticket.claimed, 'list-group-item list-group-item-action': !ticket.claimed}" >
+	    <div class='ticket' ng-repeat='ticket in data.tickets | filter: {solved: false} | orderBy:"-id" ' >
+
+	    <a class="list-group-item list-group-item-action" ng-class="{'ticket-claimed list-group-item list-group-item-action': ticket.claimed, 'list-group-item list-group-item-action': !ticket.claimed}" ng-mouseover = 'setClass(ticket.x, ticket.y)' ng-mouseleave = 'removeClass(ticket.x, ticket.y)'>
 <!-- ng-mouseenter="ticket.show = true" ng-mouseleave="ticket.show = false"  -->
 	        <h5 class="list-group-item-heading" > {{ticket.user.displayname}}</h5>
 	        <button class = 'btn btn-1' type = 'button' ng-show = '!ticket.ismine' ng-disabled = 'ticket.claimed' ng-click='claimTicket(ticket)'>Claim</button>
@@ -73,9 +74,9 @@
 					<circle class="sonar-wave" ng-repeat='ticket in data.tickets | filter: {solved: false}' ng-attr-cx="{{ticket.x}}" ng-attr-cy="{{ticket.y}}" r= "8" fill="{{ticket.color}}">
 					</circle> -->
 			<foreignobject  ng-repeat='ticket in data.tickets | filter: {solved: false}' ng-attr-x="{{ticket.x}}" ng-attr-y="{{ticket.y}}" >
-				  <div id="holder" >
-					<div class="dot" ng-style="{'border': '10px solid ' + ticket.color}" ></div>
-					<div class="pulse" ng-style="{'border': '5px solid '+ ticket.color}" ></div>
+				  <div id="holder"  >
+					<div class='dot' ng-style="{'border': '10px solid ' + ticket.color}" ></div>
+					<div class='pulse' ng-style="{'border': '5px solid '+ ticket.color}" ></div>
 				</div>
 			</foreignobject>
 
