@@ -74,7 +74,7 @@ module.exports = {
   addToQueue: (req, res) => {
     console.log('addToQueue', req.session);
 
-    Ticket.create({ message: req.body.message, location: req.body.location, userId: req.session.userID })
+    Ticket.create({ message: req.body.message, location: req.body.location, x: req.body.x, y: req.body.y, color: req.body.color, userId: req.session.userID })
       .then(function(ticket) {
         //console.log('NEW TICKET ', ticket);
         Ticket.findAll({})

@@ -35,6 +35,9 @@ var Ticket = db.define('ticket', {
  },
  message: Sequelize.TEXT,
  location: Sequelize.STRING,
+ x: Sequelize.INTEGER,
+ y: Sequelize.INTEGER,
+ color: Sequelize.STRING,
  claimed: {
    type: Sequelize.BOOLEAN,
    defaultValue: false
