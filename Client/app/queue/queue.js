@@ -6,25 +6,24 @@ angular.module('app.queue', [])
 
   //call getTickets from Tickets factory
   $scope.data = {};
+  var SVGpulse;
+  var SVGdot;
  
  //$scope.flag = false;
   $scope.setClass = function (ticketX, ticketY) {
    
-    
-    var SVGpulse = document.getElementsByClassName('pulse');  
-    var SVGdot = document.getElementsByClassName('dot');
+
 
       //for (var pulse of SVGpulse) {
         for (var i = 0; i<SVGdot.length; i++) {
-        var x = SVGdot[i].parentElement.parentElement.getAttribute('x');
-        var y = SVGdot[i].parentElement.parentElement.getAttribute('y');
-        console.log('x', x, 'ticketX', ticketX, 'y', y, 'ticketY', ticketY);
-        if (x !== ticketX.toString() && y !== ticketY.toString()) {
-
-          SVGpulse[i].setAttribute('class', 'hiddenPulse');
-          SVGdot[i].setAttribute('class', 'hiddenDot');
+           var x = SVGdot[i].parentElement.parentElement.getAttribute('x');
+           var y = SVGdot[i].parentElement.parentElement.getAttribute('y');
+        //console.log('x', x, 'ticketX', ticketX, 'y', y, 'ticketY', ticketY);
+           if (x !== ticketX.toString() && y !== ticketY.toString()) {
+             SVGpulse[i].setAttribute('class', 'pulse hiddenPulse');
+             SVGdot[i].setAttribute('class', 'dot hiddenDot');
+           }
         }
-     }
   }  
 
   $scope.removeClass = function (ticketX, ticketY) {
@@ -39,9 +38,15 @@ angular.module('app.queue', [])
  }
 
   var initializeQueue = function() {
+
+
+
     Tickets.getTickets()
       .then(function(results){
         console.log("inside initialize ", results)
+
+    SVGpulse = document.getElementsByClassName('pulse');  
+    SVGdot = document.getElementsByClassName('dot');
 
         $scope.data.tickets = results.data.tickets;
         for (var ticket of $scope.data.tickets) {
