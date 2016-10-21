@@ -94,6 +94,12 @@ h1 {
 	margin-left: 30%;
 	
 }
+#signin {
+	width: 40%;
+		margin: 0 auto;
+		text-align:center;
+		padding-top: 50px
+}
 
 .hiddenDot {
 	display: none;
@@ -101,6 +107,10 @@ h1 {
 .hiddenPulse {
 	display: none;
 }
+.hiddenTicket {
+	background-color: #90919B;
+}
+
 #holder {
 	margin: 50px auto;
 	width: 50px;

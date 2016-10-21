@@ -4,42 +4,41 @@ angular.module('app.queue', [])
 
 .controller('QueueController', ['$scope', 'Tickets', 'Auth', '$interval', function($scope, Tickets, Auth, $interval){
 
-  //call getTickets from Tickets factory
   $scope.data = {};
   var SVGpulse;
   var SVGdot;
  
- //$scope.flag = false;
-  $scope.setClass = function (ticketX, ticketY) {
+  $scope.showDot = function (ticketX, ticketY) {   
+    for (var i = 0; i<SVGdot.length; i++) {
+      var x = SVGdot[i].parentElement.parentElement.getAttribute('x');
+      var y = SVGdot[i].parentElement.parentElement.getAttribute('y');
    
+      if (x !== ticketX.toString() && y !== ticketY.toString()) {
+        SVGpulse[i].setAttribute('class', 'pulse hiddenPulse');
+        SVGdot[i].setAttribute('class', 'dot hiddenDot');
+      }
+    }
+  }  
 
+  $scope.showTicket = function (dotX, dotY) {
+   var ticketsDOM = document.getElementsByClassName('ticket');
+     
+        for (var i = 0; i<ticketsDOM.length; i++) {
 
-      //for (var pulse of SVGpulse) {
-        for (var i = 0; i<SVGdot.length; i++) {
-           var x = SVGdot[i].parentElement.parentElement.getAttribute('x');
-           var y = SVGdot[i].parentElement.parentElement.getAttribute('y');
-        //console.log('x', x, 'ticketX', ticketX, 'y', y, 'ticketY', ticketY);
-           if (x !== ticketX.toString() && y !== ticketY.toString()) {
-             SVGpulse[i].setAttribute('class', 'pulse hiddenPulse');
-             SVGdot[i].setAttribute('class', 'dot hiddenDot');
+           var x = ticketsDOM[i].firstElementChild.getAttribute('x');
+           var y = ticketsDOM[i].firstElementChild.getAttribute('y');
+
+            console.log('this x', x, 'this dotX', dotX, 'y', y, 'dotY', dotY)
+
+           if (dotX !== x.toString() && dotY !== y.toString()) {
+
+             ticketsDOM[i].setAttribute('class', 'hiddenTicket list-group-item list-group-item-action');
            }
         }
   }  
 
-  $scope.removeClass = function (ticketX, ticketY) {
- 
-
-
-    // var mySVG = document.querySelector('.active1');
-    // var mySVG2 = document.querySelector('.active2');
-    // mySVG.setAttribute('class', 'pulse');
-    // mySVG2.setAttribute('class', 'dot');
-    // initializeQueue();
- }
 
   var initializeQueue = function() {
-
-
 
     Tickets.getTickets()
       .then(function(results){
@@ -80,8 +79,6 @@ angular.module('app.queue', [])
   }
 
   $scope.ticket = {};
- // $scope.x = 100;
- // $scope.y = 100;
 
   $scope.addTicket = function () {
 
@@ -125,7 +122,6 @@ angular.module('app.queue', [])
         $scope.ticket.y = Math.random() * 70 + 690;
       } 
 
-      console.log('TICKET', $scope.ticket)
 
     Tickets.addTicket($scope.ticket)
     .then(function () {
