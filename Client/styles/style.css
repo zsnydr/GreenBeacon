@@ -89,7 +89,7 @@ h1 {
 .signout {
 
 	float: left;
-	margin-top: 60px;
+	margin-top: 30px;
 	margin-left: 30%;
 	
 }
@@ -168,4 +168,5 @@ footer {
     margin-bottom: -8px;
     text-align: center;
     font-size: 12px;
+    display: block
 }
