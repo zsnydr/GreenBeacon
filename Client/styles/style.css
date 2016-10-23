@@ -32,8 +32,11 @@ h1 {
 	display: inline-block;
 
 }
-.solv, .unsolv {
-	width: 100px;
+.solv {
+	width: 80px;
+}
+.unsolv {
+	width: 120px;
 	text-align: center;
 }
 
