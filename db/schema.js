@@ -73,7 +73,7 @@ Claim.belongsTo(Ticket);
 
 
 db
- .sync({force: true})
+ .sync({force: false})
  .then(function() {
    console.log('Tables created');
   //  return Ticket.create({message: 'Need help HELP', location: 'kitchen' }).then(function() {
