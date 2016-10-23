@@ -190,21 +190,17 @@ footer {
     display: block
 }
 
-.unsolv, .solv {
-	height: 40px;
-}
-.solv {
-	padding: 0px;
-}
+
 .unsolv {
 	width: 80px;
 	text-align: center;
 	margin-right: 5px;
-	padding: 0px;
 }
 
 .claimb, .deleteb, .solv, .unsolv {
+	height: 30px;
 	font-size: 12px;
+	padding: 0px;
 }
 
 .solv, .claimb, .deleteb {
