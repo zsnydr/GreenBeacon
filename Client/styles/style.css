@@ -32,6 +32,9 @@ h1 {
 	display: inline-block;
 
 }
+.solv, .unsolv {
+	width: 100px;
+}
 .ticket {
 	padding-bottom: 2px;
 
