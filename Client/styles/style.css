@@ -190,6 +190,9 @@ footer {
     display: block
 }
 
+.unsolv, .solv {
+	height: 50px;
+}
 .solv {
 	width: 80px;
 	padding: 0px;
