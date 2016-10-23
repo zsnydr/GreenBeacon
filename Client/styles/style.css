@@ -197,12 +197,12 @@ footer {
 	margin-right: 5px;
 }
 
-.claimb, .deleteb, .solv, .unsolv {
+ .solv, .unsolv {
 	height: 30px;
 	font-size: 12px;
 	padding: 0px;
 }
 
-.solv, .claimb, .deleteb {
+.solv {
 	width: 50px;
 }
