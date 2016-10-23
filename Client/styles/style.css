@@ -32,17 +32,8 @@ h1 {
 	display: inline-block;
 
 }
-.solv {
-	width: 80px;
-}
-.unsolv {
-	width: 120px;
-	text-align: center;
-}
 
-.unsolv {
-	margin-right: 5px
-}
+
 .ticket {
 	padding-bottom: 2px;
 
@@ -197,4 +188,13 @@ footer {
     text-align: center;
     font-size: 12px;
     display: block
+}
+
+.solv {
+	width: 80px;
+}
+.unsolv {
+	width: 120px;
+	text-align: center;
+	margin-right: 5px
 }
