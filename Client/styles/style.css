@@ -203,3 +203,7 @@ footer {
 	margin-right: 5px;
 	padding: 0px;
 }
+
+.claimb, .deleteb, .solv, .unsolv {
+	font-size: 12px;
+}
