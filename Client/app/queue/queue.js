@@ -8,21 +8,7 @@ angular.module('app.queue', [])
   var SVGpulse;
   var SVGdot;
 
-  //functionality: on hover of ticket, hide all dots that do not match ticket's x and y coordinates
-  $scope.showDot = function (ticketX, ticketY) {
-    //iterate through all dots
-    for (var i = 0; i < SVGdot.length; i++) {
-      //find each dot's x and y coordinates
-      var x = SVGdot[i].parentElement.parentElement.getAttribute('x');
-      var y = SVGdot[i].parentElement.parentElement.getAttribute('y');
 
-      //given the x and y coordinates of the ticket (ticketX, ticketY, if the dot and the ticket coordinates do NOT match, add class 'hidden' to dot.
-      if (x !== ticketX.toString() && y !== ticketY.toString()) {
-        SVGpulse[i].setAttribute('class', 'pulse hiddenPulse');
-        SVGdot[i].setAttribute('class', 'dot hiddenDot');
-      }
-    }
-  }
 
   var initializeQueue = function() {
     //retrieve tickets from database
@@ -178,7 +164,36 @@ angular.module('app.queue', [])
 
 initializeQueue();
 
-//place initialize queue in an interval so new tickets can be loaded continuously every 3 seconds
-$interval(initializeQueue, 3000);
+  //place initialize queue in an interval so new tickets can be loaded continuously every 3 seconds
+  var interval = $interval(initializeQueue, 3000);
+  var isRunning = true;
 
+
+  //functionality: on hover of ticket, hide all dots that do not match ticket's x and y coordinates
+  $scope.showDot = function (ticketX, ticketY) {
+     $interval.cancel(interval);
+      isRunning = false;
+
+    //iterate through all dots
+    for (var i = 0; i < SVGdot.length; i++) {
+      //find each dot's x and y coordinates
+      var x = SVGdot[i].parentElement.parentElement.getAttribute('x');
+      var y = SVGdot[i].parentElement.parentElement.getAttribute('y');
+
+      //given the x and y coordinates of the ticket (ticketX, ticketY, if the dot and the ticket coordinates do NOT match, add class 'hidden' to dot.
+      if (x !== ticketX.toString() && y !== ticketY.toString()) {
+        SVGpulse[i].setAttribute('class', 'pulse hiddenPulse');
+        SVGdot[i].setAttribute('class', 'dot hiddenDot');
+      }
+    }
+  }
+
+  //renews interval if it has not been running already when hover event is over 
+  $scope.renew = function () {
+    if (!isRunning) {
+      initializeQueue();
+      interval = $interval(initializeQueue, 3000);
+      isRunning = true;
+    }
+  };
 }])
