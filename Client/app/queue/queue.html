@@ -1,4 +1,10 @@
+
 <!-- Main page template -->
+<div class = 'headerq clearfix'>
+	<h1>Beacon</h1>
+	<button type="button" class="signout btn btn-default" ng-click="signout()">Sign out</button>
+</div>
+
 <div id="big-container">
 
   <!-- Tickets queue -->
@@ -36,7 +42,6 @@
 		    <input name="ticket" class="input-text" type="text" ng-model="ticket.message" placeholder="Enter your question here" required/>
 		    <input class="submit btn btn-default" type="submit" value="Add" ng-disabled="!ticket.location">
 		</form>
-	  <button type="button" class="signout btn btn-default" ng-click="signout()">Sign out</button>
 	</div>
 
 	<!-- Map -->
