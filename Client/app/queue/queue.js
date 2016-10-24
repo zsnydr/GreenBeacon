@@ -162,7 +162,7 @@ angular.module('app.queue', [])
       });
   }
 
-initializeQueue();
+  initializeQueue();
 
   //place initialize queue in an interval so new tickets can be loaded continuously every 3 seconds
   var interval = $interval(initializeQueue, 3000);
@@ -171,8 +171,8 @@ initializeQueue();
 
   //functionality: on hover of ticket, hide all dots that do not match ticket's x and y coordinates
   $scope.showDot = function (ticketX, ticketY) {
-     $interval.cancel(interval);
-      isRunning = false;
+    $interval.cancel(interval);
+    isRunning = false;
 
     //iterate through all dots
     for (var i = 0; i < SVGdot.length; i++) {
