@@ -38,8 +38,11 @@ h1 {
 	padding-bottom: 2px;
 }
 
-.list-group-item, .form-control, .input-text, .input-group {
+.list-group-item, .form-control, .input-text {
 	background-color: #E8E9F9;
+}
+.locationtext {
+	color: #E8E9F9;
 }
 
 .input-text {

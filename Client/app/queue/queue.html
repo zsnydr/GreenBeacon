@@ -20,7 +20,7 @@
 
 		<!-- Form for submitting new tickets -->
 		<form name='input-group' class='input-group' ng-submit= 'addTicket()'>
-		  <label for="select"> Select your location: </label>
+		  <label class= 'locationtext' for="select"> Select your location: </label>
 		    <select name= 'select' class="form-control" ng-model = "ticket.location" required>
           <option value = 'Lecture Hall'>Lecture Hall</option> <!-- x: 25-190; y: 50-100-->
           <option value = 'Pairing Station'>Pairing Station</option> <!-- x: 25-190; y: 140-210 -->
