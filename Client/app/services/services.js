@@ -10,7 +10,6 @@ angular.module('app.services', [])
       url: '/tickets'
     })
     .then(function (resp) {
-      console.log(resp)
       if (resp.data === 'failed') {
         //Redirects to signing if authentication fails
         $window.location = '/#/signin';
