@@ -9,6 +9,7 @@ h1 {
 	margin-bottom: 30px;
 	margin-left: 20px;
 	margin-top: 10px;
+  float: left;
 }
 
 #welcome, #support {
@@ -28,9 +29,12 @@ h1 {
 .list-group, .input-group {
    width: 450px;
 }
+.list-group {
+  margin-right: 50px;
+}
 
 .input-group {
-	padding-top: 50px;
+	padding-top: 115px;
 	display: inline-block;
 }
 
@@ -78,7 +82,7 @@ h1 {
 }
 
 #big-container {
-	width: 960px;
+	width: 1000px;
 	margin: 0 auto;
 }
 
@@ -88,12 +92,7 @@ h1 {
 	position: absolute;
 }
 
-.signout {
-	float: left;
-	margin-top: 30px;
-	margin-left: 30%;
-	margin-bottom: 30px
-}
+
 
 #signin {
 	width: 40%;
@@ -177,7 +176,8 @@ footer {
     margin-bottom: -8px;
     text-align: center;
     font-size: 12px;
-    display: block
+    display: block;
+    padding-top: 100px
 }
 
 .unsolv {
@@ -194,4 +194,19 @@ footer {
 
 .solv {
 	width: 50px;
+}
+
+.headerq {
+	display: inline;
+  clear: both;
+}
+
+.signout {
+  float: right;
+  margin-top: 20px;
+  margin-right: 10px
+}
+
+.clearfix {
+  overflow: auto;
 }
