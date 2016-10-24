@@ -1,25 +1,14 @@
-
-// var IDcount = 1;
-
-// var tickets = [
-//   { username: 'Natasha', message: 'HELP ME', location: 'Kitchen', ID: 1, date: new Date(), claimed: false, solved: false },
-//   { username: 'Alina', message: 'Help with backbone', location: 'Couch', ID: 2, date: new Date(), claimed: false, solved: false },
-//   { username: 'Conor', message: 'How do you react?', location: 'Pairing', ID: 3, date: new Date(), claimed: false, solved: false },
-//   { username: 'Zack', message: 'ugh, Grunt', location: 'Lecture Hall', ID: 4, date: new Date(), claimed: false, solved: false }
-// ];
-
 var pg = require('pg');
 var Sequelize = require('sequelize');
 
-//Models
+// postgres models
 var User = require('./db/schema').User;
 var Ticket = require('./db/schema').Ticket;
 var Claim = require('./db/schema').Claim;
 
-
-//establish database connection for querying
+// establish database connection for querying
 var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/beacon', {
- dialect: 'postgres'
+  dialect: 'postgres'
 });
 
 db
@@ -32,10 +21,11 @@ db
  });
 
 
-
 module.exports = {
 
-  newUser: (req, res, next/*, username, cb*/) => {
+  // if the current user does not exist in the users table, create a new record,
+  // then retrieve the user's information
+  newUser: function(req, res, next) {
     User.findOrCreate({ where: { username: req.session.passport.user.username, displayname: req.session.passport.user.displayName } })
       .then(function(user) {
         req.session.userID = user[0].dataValues.id;
@@ -43,8 +33,8 @@ module.exports = {
       });
   },
 
-  isLoggedIn: (req, res, next) => {
-    //console.log('SESSION ', req.session)
+  // middleware that validates the user is currently logged in by analyzing the session
+  isLoggedIn: function(req, res, next) {
     if(req.session && req.session.passport && req.session.passport.user.username && req.session.passport.user.provider === 'github'){
       next();
     } else {
@@ -52,18 +42,15 @@ module.exports = {
     }
   },
 
-  terminateSession: (req, res) => {
-    console.log('terminateSession');
+  terminateSession: function(req, res) {
     req.session.destroy();
     res.redirect('/#/signin');
   },
 
-  getTickets: (req, res) => {
-    console.log('getTickets');
-
+  // query for all tickets and claims that exist in DB and send to client
+  getTickets: function(req, res) {
     Ticket.findAll({ include: [User] })
-      .then(function(tickets){
-        console.log('TICKETS WITH USER ', tickets);
+      .then(function(tickets) {
         Claim.findAll({ include: [User, Ticket] })
           .then(function(claims) {
             res.send({ tickets: tickets, claims: claims, userID: req.session.userID });
@@ -71,22 +58,20 @@ module.exports = {
       });
   },
 
-  addToQueue: (req, res) => {
-    console.log('addToQueue', req.session);
-
+  // create a new ticket instance and add it to the tickets table
+  addToQueue: function(req, res) {
     Ticket.create({ message: req.body.message, location: req.body.location, x: req.body.x, y: req.body.y, color: req.body.color, userId: req.session.userID })
       .then(function(ticket) {
-        //console.log('NEW TICKET ', ticket);
         Ticket.findAll({})
           .then(function(tickets) {
-            //console.log('ALL TICKETS ', tickets);
             res.json(tickets);
           });
       });
   },
 
-  tagClaimed: (req, res) => {
-    console.log('claimed ', req.body.id);
+  // mark the given ticket as claimed in the tickets table,
+  // then add a new claim to the claims table
+  tagClaimed: function(req, res) {
     Ticket.find({ where: { id: req.body.id } })
       .then(function(ticket) {
         ticket.update({ claimed: true })
@@ -99,23 +84,24 @@ module.exports = {
       });
   },
 
-  eraseClaim: (req, res) => {
-    console.log('eraseClaim', req.body);
+  // delete the given claim from the claims table,
+  // then flag the corresponding ticket as 'preSolved'
+  eraseClaim: function(req, res) {
     Claim.destroy({ where: { id: req.body.id } })
       .then(function() {
-        Ticket.find({where: {id: req.body.ticketId } })
+        Ticket.find({ where: { id: req.body.ticketId } })
           .then(function (ticket) {
             ticket.update({ preSolved: true } )
-              .then(function (){
+              .then(function() {
                 res.end();
               });
           });
       });
   },
 
-  tagSolved: (req, res) => {
-    console.log('solved');
-    Ticket.find({where: {id: req.body.id}})
+  // flag the given ticket as solved in the tickets table
+  tagSolved: function(req, res) {
+    Ticket.find({ where: { id: req.body.id } })
       .then(function(ticket) {
         ticket.update({ solved: true })
           .then(function () {
@@ -124,9 +110,9 @@ module.exports = {
       });
   },
 
-  tagUnSolved: (req, res) => {
-    console.log('solved');
-    Ticket.find({where: {id: req.body.id}})
+  // flag the given ticket as not solved in the tickets table
+  tagUnSolved: function(req, res) {
+    Ticket.find({ where: { id: req.body.id } })
       .then(function(ticket) {
         ticket.update({ preSolved: false, claimed: false })
           .then(function () {
