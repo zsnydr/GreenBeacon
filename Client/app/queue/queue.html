@@ -47,8 +47,8 @@
 				<!-- Adds pulsing dots for each ticket -->
 				<foreignobject  ng-repeat='ticket in data.tickets | filter: {solved: false}' ng-attr-x="{{ticket.x}}" ng-attr-y="{{ticket.y}}" >
 					<div id="holder"  >
-						<div class='dot' ng-click = 'showTicket(ticket.x, ticket.y)' ng-style="{'border': '10px solid ' + ticket.color}" ></div>
-						<div class='pulse' ng-click = 'showTicket(ticket.x, ticket.y)'  ng-style="{'border': '5px solid '+ ticket.color}" ></div>
+						<div class='dot' ng-style="{'border': '10px solid ' + ticket.color}" ></div>
+						<div class='pulse' ng-style="{'border': '5px solid '+ ticket.color}" ></div>
 					</div>
 				</foreignobject>
 			</image>
