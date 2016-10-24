@@ -143,7 +143,7 @@ angular.module('app.queue', [])
 
     Tickets.claimTicket(ticket)
     .then(function () {
-      initializeQueue();
+      //initializeQueue();
     })
     .catch(function (err) {
       console.log(err);
