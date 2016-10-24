@@ -8,11 +8,15 @@ angular.module('app.queue', [])
   var SVGpulse;
   var SVGdot;
 
+  //functionality: on hover of ticket, hide all dots that do not match ticket's x and y coordinates
   $scope.showDot = function (ticketX, ticketY) {
-    for (var i = 0; i<SVGdot.length; i++) {
+    //iterate through all dots
+    for (var i = 0; i < SVGdot.length; i++) {
+      //find each dot's x and y coordinates
       var x = SVGdot[i].parentElement.parentElement.getAttribute('x');
       var y = SVGdot[i].parentElement.parentElement.getAttribute('y');
 
+      //given the x and y coordinates of the ticket (ticketX, ticketY, if the dot and the ticket coordinates do NOT match, add class 'hidden' to dot.
       if (x !== ticketX.toString() && y !== ticketY.toString()) {
         SVGpulse[i].setAttribute('class', 'pulse hiddenPulse');
         SVGdot[i].setAttribute('class', 'dot hiddenDot');
@@ -23,12 +27,10 @@ angular.module('app.queue', [])
   $scope.showTicket = function (dotX, dotY) {
    var ticketsDOM = document.getElementsByClassName('ticket');
 
-        for (var i = 0; i<ticketsDOM.length; i++) {
+        for (var i = 0; i < ticketsDOM.length; i++) {
 
            var x = ticketsDOM[i].firstElementChild.getAttribute('x');
            var y = ticketsDOM[i].firstElementChild.getAttribute('y');
-
-            console.log('this x', x, 'this dotX', dotX, 'y', y, 'dotY', dotY)
 
            if (dotX !== x.toString() && dotY !== y.toString()) {
 
@@ -39,13 +41,11 @@ angular.module('app.queue', [])
 
 
   var initializeQueue = function() {
-    console.log('this got called!!!!!!!');
     Tickets.getTickets()
       .then(function(results){
-        console.log("inside initialize ", results)
 
-    SVGpulse = document.getElementsByClassName('pulse');
-    SVGdot = document.getElementsByClassName('dot');
+        SVGpulse = document.getElementsByClassName('pulse');
+        SVGdot = document.getElementsByClassName('dot');
 
         $scope.data.tickets = results.data.tickets;
         for (var ticket of $scope.data.tickets) {
