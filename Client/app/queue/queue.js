@@ -65,51 +65,58 @@ angular.module('app.queue', [])
   $scope.ticket = {};
 
   $scope.addTicket = function () {
+    
+  //assign random color for each ticket's dot
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split(''),
+        color = '#';
+    for(var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
 
-    //assign random color for each ticket's dot
-    $scope.ticket.color = '#' + Math.floor(Math.random()*16777215).toString(16);
+  $scope.ticket.color =  getRandomColor();
 
-    //given the location indicated in the add ticket form
-      //assign random x and y coordinates for each ticket within pre-defined boundaries of each location on the map
-      if ($scope.ticket.location === 'Lecture Hall') {
-        $scope.ticket.x = Math.random() * 165 + 25;
-        $scope.ticket.y = Math.random() * 50 + 50;
+  if ($scope.ticket.location === 'Lecture Hall') {
+    $scope.ticket.x = Math.random() * 165 + 25;
+    $scope.ticket.y = Math.random() * 50 + 50;
 
-      } else if ($scope.ticket.location === 'Pairing Station') {
-        $scope.ticket.x = Math.random() * 165 + 25;
-        $scope.ticket.y = Math.random() * 70 + 140;
+  } else if ($scope.ticket.location === 'Pairing Station') {
+    $scope.ticket.x = Math.random() * 165 + 25;
+    $scope.ticket.y = Math.random() * 70 + 140;
 
-      } else if ($scope.ticket.location === 'Kitchen') {
-        $scope.ticket.x = Math.random() * 165 + 25;
-        $scope.ticket.y = Math.random() * 80 + 240;
+  } else if ($scope.ticket.location === 'Kitchen') {
+    $scope.ticket.x = Math.random() * 165 + 25;
+    $scope.ticket.y = Math.random() * 80 + 240;
 
-      } else if ($scope.ticket.location === 'Couch') {
-        $scope.ticket.x = Math.random() * 120 + 250;
-        $scope.ticket.y = Math.random() * 95 + 230;
+  } else if ($scope.ticket.location === 'Couch') {
+    $scope.ticket.x = Math.random() * 120 + 250;
+    $scope.ticket.y = Math.random() * 95 + 230;
 
-      } else if ($scope.ticket.location === 'Senior Zone') {
-        $scope.ticket.x = Math.random() * 100 + 270;
-        $scope.ticket.y = Math.random() * 240 + 370;
+  } else if ($scope.ticket.location === 'Senior Zone') {
+    $scope.ticket.x = Math.random() * 100 + 270;
+    $scope.ticket.y = Math.random() * 240 + 370;
 
-      } else if ($scope.ticket.location === 'The Hopper') {
-        $scope.ticket.x = Math.random() * 135 + 25;
-        $scope.ticket.y = Math.random() * 80 + 470;
+  } else if ($scope.ticket.location === 'The Hopper') {
+    $scope.ticket.x = Math.random() * 135 + 25;
+    $scope.ticket.y = Math.random() * 80 + 470;
 
-      } else if ($scope.ticket.location === 'The Dijkstra') {
-        $scope.ticket.x = Math.random() * 135 + 25;
-        $scope.ticket.y = Math.random() * 65 + 590;
+  } else if ($scope.ticket.location === 'The Dijkstra') {
+    $scope.ticket.x = Math.random() * 135 + 25;
+    $scope.ticket.y = Math.random() * 65 + 590;
 
-      } else if ($scope.ticket.location === 'The Ada') {
-        $scope.ticket.x = Math.random() * 80 + 290;
-        $scope.ticket.y = Math.random() * 105 + 655;
+  } else if ($scope.ticket.location === 'The Ada') {
+    $scope.ticket.x = Math.random() * 80 + 290;
+    $scope.ticket.y = Math.random() * 105 + 655;
 
-      } else if ($scope.ticket.location === 'Entrance Hall') {
-        $scope.ticket.x = Math.random() * 235 + 25;
-        $scope.ticket.y = Math.random() * 70 + 690;
-      }
+  } else if ($scope.ticket.location === 'Entrance Hall') {
+    $scope.ticket.x = Math.random() * 235 + 25;
+    $scope.ticket.y = Math.random() * 70 + 690;
+  }
 
-    //retrieve new ticket from html form, pass to add Ticket function
-    Tickets.addTicket($scope.ticket)
+  //retrieve new ticket from html form, pass to add Ticket function
+  Tickets.addTicket($scope.ticket)
     .then(function () {
       $scope.ticket = {};
       initializeQueue();
