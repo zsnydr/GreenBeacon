@@ -8,11 +8,15 @@ angular.module('app.queue', [])
   var SVGpulse;
   var SVGdot;
 
+  //functionality: on hover of ticket, hide all dots that do not match ticket's x and y coordinates
   $scope.showDot = function (ticketX, ticketY) {
-    for (var i = 0; i<SVGdot.length; i++) {
+    //iterate through all dots
+    for (var i = 0; i < SVGdot.length; i++) {
+      //find each dot's x and y coordinates
       var x = SVGdot[i].parentElement.parentElement.getAttribute('x');
       var y = SVGdot[i].parentElement.parentElement.getAttribute('y');
 
+      //given the x and y coordinates of the ticket (ticketX, ticketY, if the dot and the ticket coordinates do NOT match, add class 'hidden' to dot.
       if (x !== ticketX.toString() && y !== ticketY.toString()) {
         SVGpulse[i].setAttribute('class', 'pulse hiddenPulse');
         SVGdot[i].setAttribute('class', 'dot hiddenDot');
@@ -20,54 +24,48 @@ angular.module('app.queue', [])
     }
   }
 
-  $scope.showTicket = function (dotX, dotY) {
-   var ticketsDOM = document.getElementsByClassName('ticket');
-
-        for (var i = 0; i<ticketsDOM.length; i++) {
-
-           var x = ticketsDOM[i].firstElementChild.getAttribute('x');
-           var y = ticketsDOM[i].firstElementChild.getAttribute('y');
-
-            console.log('this x', x, 'this dotX', dotX, 'y', y, 'dotY', dotY)
-
-           if (dotX !== x.toString() && dotY !== y.toString()) {
-
-             ticketsDOM[i].setAttribute('class', 'hiddenTicket list-group-item list-group-item-action');
-           }
-        }
-  }
-
-
   var initializeQueue = function() {
-    console.log('this got called!!!!!!!');
+    //retrieve tickets from database
     Tickets.getTickets()
       .then(function(results){
-        console.log("inside initialize ", results)
 
-    SVGpulse = document.getElementsByClassName('pulse');
-    SVGdot = document.getElementsByClassName('dot');
+        SVGpulse = document.getElementsByClassName('pulse');
+        SVGdot = document.getElementsByClassName('dot');
 
+        //add tickets to the scope
         $scope.data.tickets = results.data.tickets;
+        //iterate through all tickets
         for (var ticket of $scope.data.tickets) {
+          //if the userId of the ticket matches the current session user
           if (ticket.userId === results.data.userID) {
+            //add and set isMine attribute to true
             ticket.ismine = true;
           } else {
             ticket.ismine = false;
           }
         }
+
+        //set claims to the scope
         $scope.data.claims = results.data.claims;
 
+        //iterate through all claims
         for (var claim of $scope.data.claims) {
+          //if the helpee (user) id of the claim matches the current session user
           if (claim.helpeeId === results.data.userID) {
+            //alert the helpee and include the name of the user who claimed the ticket
             alert(claim.user.displayname + ' is on their way!');
 
             for (var ticket of $scope.data.tickets) {
+              //if the ticket's claimed attribute is true and the user of the claimed ticket matches the current session user
+                //set the ticket's preSolved state to true
               if (ticket.claimed && ticket.userId === results.data.userID) {
                 ticket.preSolved = true;
               }
             }
+            //Delete the claim from the database
             Tickets.eraseClaim(claim)
             .then(function () {
+              //wipe out client-side claims object
                $scope.data.claims = {};
             })
           }
@@ -82,9 +80,11 @@ angular.module('app.queue', [])
 
   $scope.addTicket = function () {
 
+    //assign random color for each ticket's dot
     $scope.ticket.color = '#' + Math.floor(Math.random()*16777215).toString(16);
-    //Math.random() * (max - min) + min;
 
+    //given the location indicated in the add ticket form
+      //assign random x and y coordinates for each ticket within pre-defined boundaries of each location on the map
       if ($scope.ticket.location === 'Lecture Hall') {
         $scope.ticket.x = Math.random() * 165 + 25;
         $scope.ticket.y = Math.random() * 50 + 50;
@@ -122,7 +122,7 @@ angular.module('app.queue', [])
         $scope.ticket.y = Math.random() * 70 + 690;
       }
 
-
+    //retrieve new ticket from html form, pass to add Ticket function
     Tickets.addTicket($scope.ticket)
     .then(function () {
       $scope.ticket = {};
@@ -134,47 +134,51 @@ angular.module('app.queue', [])
   }
 
   $scope.signout = function () {
-    console.log('inside signout')
     Auth.signout();
   }
 
   $scope.claimTicket = function (ticket) {
-    //ticket.claimed = !ticket.claimed;
 
+    //once 'claim' has been clicked'
+      //pass the claimed ticket to claim Ticket service
     Tickets.claimTicket(ticket)
-    .then(function () {
-      initializeQueue();
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+      .then(function () {
+        initializeQueue();
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
 
   }
 
   $scope.solveTicket = function (ticket) {
 
+    //if 'Solved' has been clicked on the ticket, pass that ticket into solveTicket service
      Tickets.solveTicket(ticket)
-    .then(function () {
-      initializeQueue();
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+       .then(function () {
+         initializeQueue();
+       })
+       .catch(function (err) {
+         console.log(err);
+       });
   }
 
 
   $scope.unsolveTicket = function (ticket) {
 
+    //if 'Not Solved' is clicked, pass the ticket to unsolveTicket service
      Tickets.unsolveTicket(ticket)
-    .then(function () {
-      initializeQueue();
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+      .then(function () {
+        initializeQueue();
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   }
 
 initializeQueue();
+
+//place initialize queue in an interval so new tickets can be loaded continuously every 3 seconds
 $interval(initializeQueue, 3000);
 
 }])
