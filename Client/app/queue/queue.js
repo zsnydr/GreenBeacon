@@ -80,9 +80,11 @@ angular.module('app.queue', [])
 
   $scope.addTicket = function () {
 
+    //assign random color for each ticket's dot
     $scope.ticket.color = '#' + Math.floor(Math.random()*16777215).toString(16);
-    //Math.random() * (max - min) + min;
 
+    //given the location indicated in the add ticket form
+      //assign random x and y coordinates for each ticket within pre-defined boundaries of each location on the map
       if ($scope.ticket.location === 'Lecture Hall') {
         $scope.ticket.x = Math.random() * 165 + 25;
         $scope.ticket.y = Math.random() * 50 + 50;
@@ -120,7 +122,7 @@ angular.module('app.queue', [])
         $scope.ticket.y = Math.random() * 70 + 690;
       }
 
-
+    //retrieve new ticket from html form, pass to add Ticket function
     Tickets.addTicket($scope.ticket)
     .then(function () {
       $scope.ticket = {};
@@ -132,47 +134,51 @@ angular.module('app.queue', [])
   }
 
   $scope.signout = function () {
-    console.log('inside signout')
     Auth.signout();
   }
 
   $scope.claimTicket = function (ticket) {
-    //ticket.claimed = !ticket.claimed;
 
+    //once 'claim' has been clicked'
+      //pass the claimed ticket to claim Ticket service
     Tickets.claimTicket(ticket)
-    .then(function () {
-      initializeQueue();
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+      .then(function () {
+        initializeQueue();
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
 
   }
 
   $scope.solveTicket = function (ticket) {
 
+    //if 'Solved' has been clicked on the ticket, pass that ticket into solveTicket service
      Tickets.solveTicket(ticket)
-    .then(function () {
-      initializeQueue();
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+       .then(function () {
+         initializeQueue();
+       })
+       .catch(function (err) {
+         console.log(err);
+       });
   }
 
 
   $scope.unsolveTicket = function (ticket) {
 
+    //if 'Not Solved' is clicked, pass the ticket to unsolveTicket service
      Tickets.unsolveTicket(ticket)
-    .then(function () {
-      initializeQueue();
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+      .then(function () {
+        initializeQueue();
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   }
 
 initializeQueue();
+
+//place initialize queue in an interval so new tickets can be loaded continuously every 3 seconds
 $interval(initializeQueue, 3000);
 
 }])
