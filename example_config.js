@@ -1,8 +1,8 @@
 if(process.env.NODE_ENV !== 'production') {
   // i.e. you are working from localhost
   module.exports.keys = {
-    gitHubClientId: 'Your Localhost Client ID',
-    gitHubSecretKey: 'Your Localhost Secret Key',
+    gitHubClientId: '2bf2f840356d251d928c',
+    gitHubSecretKey: 'c606d2126dd0ea186e3dda5d53f1646bf778cc10',
     gitCallbackUrl: 'http://localhost:3000/callback'
   }
 }
