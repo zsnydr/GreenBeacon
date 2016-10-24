@@ -24,21 +24,6 @@ angular.module('app.queue', [])
     }
   }
 
-  $scope.showTicket = function (dotX, dotY) {
-   var ticketsDOM = document.getElementsByClassName('ticket');
-
-        for (var i = 0; i < ticketsDOM.length; i++) {
-
-           var x = ticketsDOM[i].firstElementChild.getAttribute('x');
-           var y = ticketsDOM[i].firstElementChild.getAttribute('y');
-
-           if (dotX !== x.toString() && dotY !== y.toString()) {
-
-             ticketsDOM[i].setAttribute('class', 'hiddenTicket list-group-item list-group-item-action');
-           }
-        }
-  }
-
 
   var initializeQueue = function() {
     Tickets.getTickets()
