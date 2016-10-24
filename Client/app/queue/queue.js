@@ -39,7 +39,7 @@ angular.module('app.queue', [])
 
 
   var initializeQueue = function() {
-
+    console.log('this got called!!!!!!!');
     Tickets.getTickets()
       .then(function(results){
         console.log("inside initialize ", results)
@@ -143,7 +143,7 @@ angular.module('app.queue', [])
 
     Tickets.claimTicket(ticket)
     .then(function () {
-      //initializeQueue();
+      initializeQueue();
     })
     .catch(function (err) {
       console.log(err);
