@@ -2,6 +2,8 @@
 
 The GreenBeacon app manages help requests and responses for MakerSquare students
 
+beacondev.herokuapp.com
+
 ## Team
 
   - __Product Owner__: Conor O'Leary
