@@ -252,3 +252,7 @@ footer {
   background-color: #E8E9F9;
   margin-left: 11px
 }
+
+.signinbtn:hover, .signout:hover {
+  background-color: #c7c8d6;
+}
