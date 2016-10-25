@@ -60,7 +60,7 @@ From your postgres terminal, create a database called 'beacon'
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/GreenBeacon/GreenBeacon/issues)
 
 
 ## Contributing
