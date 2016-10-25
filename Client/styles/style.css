@@ -29,7 +29,7 @@ body {
 }
 
 .list-group {
-	height: 500px;
+	height: 575px;
 	overflow: auto;
 }
 
@@ -41,7 +41,7 @@ body {
 }
 
 .input-group {
-	padding-top: 115px;
+	padding-top: 42px;
 	display: inline-block;
 }
 
