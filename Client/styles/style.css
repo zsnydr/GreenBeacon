@@ -30,7 +30,7 @@ h1 {
    width: 450px;
 }
 .list-group {
-  margin-right: 50px;
+  margin-right: 100px;
 }
 
 .input-group {
@@ -82,7 +82,7 @@ h1 {
 }
 
 #big-container {
-	width: 1000px;
+	width: 950px;
 	margin: 0 auto;
 }
 
