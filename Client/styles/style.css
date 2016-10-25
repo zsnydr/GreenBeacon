@@ -1,6 +1,11 @@
 body {
 	font-family: "PT Mono", "Times New Roman", serif;
 	background-color: #2d2d2d;
+  background-image: url('../back.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+    background-size: cover;
 }
 
 h1 {
@@ -15,10 +20,21 @@ h1 {
 #welcome, #support {
 	color: #E8E9F9;
 	margin-left: 20px;
+  display: inline-block;
+}
+
+ h2 {
+  font-size: 40px
 }
 
 #support {
-	padding-bottom: 30px
+	padding-bottom: 10px;
+  font-size: 21px
+}
+.signoutb {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 250px;
 }
 
 .list-group {
@@ -99,7 +115,7 @@ h1 {
 	margin: 0 auto;
 	text-align:center;
 	padding-top: 50px;
-  margin-top: 100px
+  margin-top: 80px
 }
 
 .hiddenDot, .hiddenPulse {
@@ -210,4 +226,20 @@ footer {
 
 .clearfix {
   overflow: auto;
+}
+
+.logo {
+  width:180px;
+  height:180px;
+  margin: 0 auto;
+  padding-left: 12px;
+  margin-bottom: 30px;
+
+}
+
+.logo .logoimg {
+  max-width:100%; 
+  max-height:100%;
+  margin:auto;
+  display:block;
 }
