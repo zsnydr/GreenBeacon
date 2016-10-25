@@ -1,58 +1,55 @@
 // basic server
 var express = require('express');
-var passport = require('passport');
-var session = require('express-session');
-var GitHubStrategy = require('passport-github2').Strategy;
 // Middleware
 var parser = require('body-parser');
-var authorize = require('./authHelpers.js');
-
-// var gitClientID = '2bf2f840356d251d928c';
-// var gitSecret = 'c606d2126dd0ea186e3dda5d53f1646bf778cc10';
-//
-// passport.serializeUser(function(user, done) {
-//   done(null, user);
-// });
-//
-// passport.deserializeUser(function(obj, done) {
-//   done(null, obj);
-// });
-//
-//
-// passport.use(new GitHubStrategy({
-//     clientID: gitClientID,
-//     clientSecret: gitSecret,
-//     callbackURL: "http://127.0.0.1:3000/auth/github/callback"
-//   },
-//   function(accessToken, refreshToken, profile, done) {
-//     // asynchronous verification, for effect...
-//     process.nextTick(function () {
-//
-//       // To keep the example simple, the user's GitHub profile is returned to
-//       // represent the logged-in user.  In a typical application, you would want
-//       // to associate the GitHub account with a user record in your database,
-//       // and return that user instead.
-//       return done(null, profile);
-//     });
-//   }
-// ));
+var session = require('express-session');
+var passport = require('passport');
+var GitHubStrategy = require('passport-github2').Strategy;
+var routes = require('./routes');
+var config = require('./example_config');
 
 var app = express();
 
-
-// Set what we are listening on.
-
-var port = process.env.PORT || 3000;
-// Logging and parsing
-app.use(parser.json());
-
-// Serve the client files
-app.use(express.static(__dirname + '/Client'));
-
-app.listen(port, function(){
-  console.log('listening on port: ', port)
+passport.serializeUser(function(id, done) {
+  done(null, id);
 });
 
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
-authorize.auth(app);
+// set configuration keys for Github authentication via Passport
+passport.use(new GitHubStrategy({
+  clientID: process.env.GITHUB_CLIENT_ID || config.keys.gitHubClientId,
+  clientSecret: process.env.GITHUB_SECRET_KEY || config.keys.gitHubSecretKey,
+  callbackURL: process.env.GIT_CALLBACK_URL || config.keys.gitCallbackUrl
+  },
+  function(accessToken, refreshToken, profile, done) {
+    process.nextTick(function() {
+      return done(null, profile);
+    });
+  }
+));
+
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {maxAge: 600000*3} //30 mins
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(express.static(__dirname + '/Client'));
+app.use(parser.json());
+
+routes.router(app);
+
+app.set('port', process.env.PORT || 3000);
+
+app.listen(app.get('port'), function() {
+  console.log('listening on port: ', app.get('port'))
+});
+
 module.exports.app = app;
