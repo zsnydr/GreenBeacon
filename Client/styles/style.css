@@ -70,7 +70,7 @@ body {
 
 .btn {
 	color: #613DC1;
-  background-color: #E8E9F9;
+  
 }
 
 .btn-1 {
@@ -248,6 +248,6 @@ footer {
   margin-left: 20px;
   float: left;
 }
-.signinbtn, .btn-default {
+.signinbtn {
   background-color: #E8E9F9;
 }
