@@ -1,14 +1,16 @@
 # GreenBeacon
 
-The GreenBeacon app manages help requests and responses for MakerSquare students
+Technical support platform
 
-beacondev.herokuapp.com
+https://beacondev.herokuapp.com
+
+DEMO: https://www.youtube.com/watch?v=DEihwaAqKkI
 
 ## Team
 
   - __Product Owner__: Conor O'Leary
   - __Scrum Master__: Alina Lobastova
-  - __Development Team Members__: Natasha Thapliyal , Zack Snyder
+  - __Engineers__: Natasha Thapliyal , Zack Snyder
 
 ## Table of Contents
 

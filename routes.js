@@ -1,14 +1,13 @@
-var passport = require('passport');
-var helpers = require('./routehelpers');
+const passport = require('passport');
+const helpers = require('./routehelpers');
 
-module.exports.router = function(app) {
-
-  app.get('/auth/github', passport.authenticate('github', { scope: [ 'user:email' ] }), function(req, res) {
+module.exports.router = (app) => {
+  app.get('/auth/github', passport.authenticate('github', { scope: [ 'user:email' ] }), () => {
     // The request will be redirected to GitHub for authentication, so this
     // function will not be called.
   });
 
-  app.get('/callback', passport.authenticate('github', { failureRedirect: '/session' }), helpers.newUser, function(req, res) {
+  app.get('/callback', passport.authenticate('github', { failureRedirect: '/session' }), helpers.newUser, (req, res) => {
     // upon Github authentication, add the passport object to the current cookie
     // and redirect to tickets page
     req.session.cookie.passport = req.session.passport;
@@ -28,5 +27,4 @@ module.exports.router = function(app) {
   app.put('/unsolved', helpers.isLoggedIn, helpers.tagUnSolved);
 
   app.get('/signout', helpers.isLoggedIn, helpers.terminateSession)
-
 };

@@ -1,20 +1,18 @@
-// basic server
-var express = require('express');
-// Middleware
-var parser = require('body-parser');
-var session = require('express-session');
-var passport = require('passport');
-var GitHubStrategy = require('passport-github2').Strategy;
-var routes = require('./routes');
-var config = require('./example_config');
+const express = require('express');
+const parser = require('body-parser');
+const session = require('express-session');
+const passport = require('passport');
+const GitHubStrategy = require('passport-github2').Strategy;
+const routes = require('./routes');
+const config = require('./example_config');
 
-var app = express();
+const app = express();
 
-passport.serializeUser(function(id, done) {
+passport.serializeUser((id, done) => {
   done(null, id);
 });
 
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
@@ -24,8 +22,8 @@ passport.use(new GitHubStrategy({
   clientSecret: process.env.GITHUB_SECRET_KEY || config.keys.gitHubSecretKey,
   callbackURL: process.env.GIT_CALLBACK_URL || config.keys.gitCallbackUrl
   },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function() {
+  (accessToken, refreshToken, profile, done) => {
+    process.nextTick(() => {
       return done(null, profile);
     });
   }
@@ -35,7 +33,7 @@ app.use(session({
   secret: 'secret',
   resave: true,
   saveUninitialized: true,
-  cookie: {maxAge: 600000*3} //30 mins
+  cookie: {maxAge: 600000 * 3} //30 mins
 }));
 
 app.use(passport.initialize());
@@ -48,8 +46,8 @@ routes.router(app);
 
 app.set('port', process.env.PORT || 3000);
 
-app.listen(app.get('port'), function() {
-  console.log('listening on port: ', app.get('port'))
+app.listen(app.get('port'),() => {
+  console.log(`listening on port: ${app.get('port')}`);
 });
 
 module.exports.app = app;

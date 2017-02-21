@@ -28,5 +28,6 @@ Just sign in with your GitHub account and either give or request assistance
 
 ## Customer Quote ##
 Helping my peers gives me the opportunity to improve my knowledge, I can walk other people through the material, which helps my understanding of the subject
+
 ## Closing and Call to Action ##
 Sign in and see if you can make yourself or somebody better!

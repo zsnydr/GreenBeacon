@@ -1,25 +1,27 @@
 angular.module('app.services', [])
-
 //Tickets factory - handles all tickets manipulations
-.factory('Tickets', ['$http', '$window', function ($http, $window) {
+.factory('Tickets', ['$http', '$window', function($http, $window) {
 
   //Sends GET request to the server in order to render tickets
-  var getTickets = function () {
+  const getTickets = () => {
     return $http({
       method: 'GET',
       url: '/tickets'
     })
-    .then(function (resp) {
+    .then((resp) => {
       if (resp.data === 'failed') {
         //Redirects to signing if authentication fails
         $window.location = '/#/signin';
       }
       return resp;
+    })
+    .catch((err) => {
+      console.log(`Error getting tickets in Tickets factory: ${err}`);
     });
   };
 
   //Sends POST request to the server in order to post a new ticket
-  var addTicket = function (ticket) {
+  const addTicket = (ticket) => {
     return $http({
       method: 'POST',
       url: '/tickets',
@@ -28,7 +30,7 @@ angular.module('app.services', [])
   };
 
   //Sends PUT request to the server in order to mark the ticket as claimed
-  var claimTicket = function (ticket) {
+  const claimTicket = (ticket) => {
     return $http({
       method: 'PUT',
       url: '/claimed',
@@ -37,7 +39,7 @@ angular.module('app.services', [])
   };
 
   //Sends POST request to the server in order to erase the ticket from claims table
-  var eraseClaim = function (data) {
+  const eraseClaim = (data) => {
     return $http({
       method: 'POST',
       url: '/eraseClaim',
@@ -46,7 +48,7 @@ angular.module('app.services', [])
   };
 
   //Sends PUT request to the server in order to mark the ticket as solved
-  var solveTicket = function (ticket) {
+  const solveTicket = (ticket) => {
     return $http({
       method: 'PUT',
       url: '/solved',
@@ -55,7 +57,7 @@ angular.module('app.services', [])
   };
 
   //Sends PUT request to the server in order to mark the ticket as NOT solved
-  var unsolveTicket = function (ticket) {
+  const unsolveTicket = (ticket) => {
     return $http({
       method: 'PUT',
       url: '/unsolved',
@@ -64,30 +66,28 @@ angular.module('app.services', [])
   };
 
   return {
-    getTickets: getTickets,
-    addTicket: addTicket,
-    claimTicket: claimTicket,
-    eraseClaim: eraseClaim,
-    solveTicket: solveTicket,
-    unsolveTicket: unsolveTicket
+    getTickets,
+    addTicket,
+    claimTicket,
+    eraseClaim,
+    solveTicket,
+    unsolveTicket
   }
 }])
 
 //Tickets factory - handles authentication processes
-.factory('Auth', ['$http', '$window', function($http, $window){
-
+.factory('Auth', ['$http', '$window', function($http, $window) {
   //Redirects to path, so GitHub OAuth process will be triggered
-  var signin = function () {
+  const signin = () => {
     $window.location = '/auth/github';
   };
-
   //Redirects to path, so signout process will be triggered and handled on the server side
-  var signout = function () {
+  const signout = () => {
     $window.location = '/signout';
   };
 
   return {
-    signin: signin,
-    signout: signout
+    signin,
+    signout
   }
 }]);
