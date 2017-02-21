@@ -2,7 +2,7 @@ const pg = require('pg');
 const Sequelize = require('sequelize');
 
 // postgres models
-const { User, Ticket, Claim } = require('./db/schema');
+const { User, Ticket, Claim } = require('../db/schema');
 
 // establish database connection for querying
 const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/beacon', {
@@ -22,7 +22,12 @@ module.exports = {
   // if the current user does not exist in the users table, create a new record,
   // then retrieve the user's information
   newUser: (req, res, next) => {
-    User.findOrCreate({ where: { username: req.session.passport.user.username, displayname: req.session.passport.user.displayName } })
+    User.findOrCreate({
+      where: {
+        username: req.session.passport.user.username,
+        displayname: req.session.passport.user.displayName
+      }
+    })
     .then((user) => {
       req.session.userID = user[0].dataValues.id;
       next();
@@ -49,14 +54,21 @@ module.exports = {
     .then((tickets) => {
       Claim.findAll({ include: [User, Ticket] })
         .then((claims) => {
-          res.send({ tickets: tickets, claims: claims, userID: req.session.userID });
+          res.send({ tickets, claims, userID: req.session.userID });
         });
     });
   },
 
   // create a new ticket instance and add it to the tickets table
   addToQueue: (req, res) => {
-    Ticket.create({ message: req.body.message, location: req.body.location, x: req.body.x, y: req.body.y, color: req.body.color, userId: req.session.userID })
+    Ticket.create({ 
+      message: req.body.message,
+      location: req.body.location,
+      x: req.body.x,
+      y: req.body.y,
+      color: req.body.color,
+      userId: req.session.userID
+    })
     .then(() => {
       Ticket.findAll({});
     })

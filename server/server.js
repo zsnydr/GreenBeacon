@@ -39,7 +39,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(__dirname + '/Client'));
+app.use(express.static(__dirname + '../Client'));
 app.use(parser.json());
 
 routes.router(app);
